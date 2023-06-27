@@ -1,65 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { onSnapshot, query, orderBy, addDoc } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { addDoc } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
-import PostForm from './PostForm';
-import Posts from './Posts';
-import SignUp from './SignUp';
-import SignOut from './SignOut';
-import { postsRef } from './firebase';
-import SignIn from './SignIn';
+import { postsRef } from "./firebase";
+import Container from "./Container";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState(null);
-  const auth = getAuth();
+  const [usersList, setUsersList] = useState(null);
 
-  const addPost = (title, content) => {
-    addDoc(postsRef, {
-      title,
-      content,
-      createdAt: serverTimestamp(),
-    });
-  };
-
-  useEffect(() => {
-    const q = query(postsRef, orderBy("createdAt", "desc"));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const posts = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setPosts(posts);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-    });
-
-    return () => unsubscribe();
-  }, []);
+  // const addPost = (title, content) => {
+  //   addDoc(postsRef, {
+  //     title,
+  //     content,
+  //     createdAt: serverTimestamp(),
+  //   });
+  // };
 
   return (
-    <div className="App">
-      <h1 className='text-red-500'>My Blog</h1>
-      {user ? (
-        <>
-          <SignOut />
-          <PostForm addPost={addPost} />
-          <Posts posts={posts} user={user} />
-        </>
-      ) : (
-       <div>
- <SignUp/>
-        <SignIn/>
-      </div>
-      )}
+    <div>
+      <Container />
+      {/* <Posts posts={posts} user={user} /> */}
     </div>
   );
 }
 
 export default App;
+
+// {user ? (
+//   <>
+//     <SignOut />
+//     <PostForm addPost={addPost} />
+//     <Posts posts={posts} user={user} />
+//   </>
+// ) : (
+//  <div>
+// <SignUp/>
+//   <SignIn/>
+// </div>
+// )}

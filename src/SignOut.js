@@ -2,7 +2,11 @@ import React from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 
 function SignOut() {
+
+
+
   const auth = getAuth();
+  console.log(auth.currentUser);
 
   const handleSignOut = async () => {
     try {
