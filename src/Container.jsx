@@ -5,8 +5,9 @@ import Header from "./Header";
 import Home from "./pages/Home";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import SignOut from "./SignOut";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+import PostForm from "./PostForm";
 
 export default function Container() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -27,23 +28,17 @@ export default function Container() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+ 
+ <Route path="/signup" element={ user ? <Navigate replace to={`/`}/> : <SignUp />}/>
 
-        <Route
-          path="/signup"
-          element={user ? <Navigate replace to="/profile" /> : <SignUp />}
-        />
-        <Route
-          path="/logout"
-          element={user ? <SignOut /> : <Navigate replace to="/profile" />}
-        />
 
         <Route
           path="/login"
-          element={user ? <Navigate replace to="/profile" /> : <LogIn />}
+          element={user ? <Navigate replace to={`/profile/${currentUser?.uid}`}/> : <LogIn />}
         />
 
         <Route
-          path={`profile`}
+          path={`/profile/${currentUser?.uid}`}
           element={
             user ? (
               <Profile currentUser={currentUser} />
@@ -52,6 +47,18 @@ export default function Container() {
             )
           }
         />
+
+<Route
+          path={`/addpost/${currentUser?.uid}`}
+          element={
+            user ? (
+              <PostForm currentUser={currentUser} />
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

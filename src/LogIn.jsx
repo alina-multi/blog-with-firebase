@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AuthErrorCodes,
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
@@ -13,31 +12,15 @@ function LogIn() {
   
   const auth = getAuth();
 
-  // const signUp = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const res = await createUserWithEmailAndPassword(auth, email, password)
-  //     const user = res.user;
-  //     console.log(user);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect (() => {
-  //   console.log(user);
-  // }, [user])
-
   const signIn = async (e) => {
     e.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       const user = res.user;
-      console.log(user);
+
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
       if (errorCode === AuthErrorCodes.USER_DELETED) {
         setIsError(errorMessage);
       }
