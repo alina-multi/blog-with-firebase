@@ -24,7 +24,7 @@ export const db = getFirestore(app);
 
 export const postsRef = collection(db, 'posts');
 export const commentsRef = collection(db, 'comments');
-export const usersRef = collection(db, 'users');
+
 
 const auth = getAuth();
 const storage = getStorage();

@@ -48,11 +48,18 @@ export default function PopoverMenu () {
               </a>
             ))} */}
 
-              <NavLink
+           <NavLink
              to={`/profile/${user.uid}`}
              className="block rounded-lg px-3 py-2 text-sm font-semibold leading-6  hover:bg-indigo-400"
             >
-              Profile
+              My Profile
+            </NavLink>
+
+              <NavLink
+             to={`/editprofile/${user.uid}`}
+             className="block rounded-lg px-3 py-2 text-sm font-semibold leading-6  hover:bg-indigo-400"
+            >
+              Edit Profile
             </NavLink>
 
             <button

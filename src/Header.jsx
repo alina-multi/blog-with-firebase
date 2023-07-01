@@ -10,8 +10,8 @@ import PopoverMenu from "./components/Popover";
 
 const navigation = [
   { name: "All posts", href: "/" },
+  { name: "Authors", href: "/users" },
   { name: "About", href: "/about" },
-  { name: "Contacts", href: "/contacts" },
 ];
 
 

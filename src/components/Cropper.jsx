@@ -11,8 +11,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
   const currentUser = useAuth();
 
   useEffect(() => {
-   
-
+  
     if (currentUser?.photoURL) {
       setPreview(currentUser.photoURL);
     }
