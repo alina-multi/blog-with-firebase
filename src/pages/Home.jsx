@@ -6,7 +6,6 @@ import { postsRef } from '../firebase';
 
 
 export default function Home() {
-
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState(null);
     const auth = getAuth();

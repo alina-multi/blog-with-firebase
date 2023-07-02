@@ -4,8 +4,8 @@ import { Bars3Icon, XMarkIcon, PlusCircleIcon } from "@heroicons/react/24/outlin
 import { NavLink } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 
-import Logo from "./components/atoms/Logo";
-import PopoverMenu from "./components/Popover";
+import Logo from "./atoms/Logo";
+import PopoverMenu from "./Popover";
 
 
 const navigation = [

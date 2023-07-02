@@ -5,8 +5,7 @@ import {
   AuthErrorCodes,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { useAuth } from "./firebase";
-import { addDoc, serverTimestamp } from "firebase/firestore";
+
 
 function SignUp() {
   const [email, setEmail] = useState("");

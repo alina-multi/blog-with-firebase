@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Tab } from '@headlessui/react'
 import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid';
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsRef, useAuth } from "./firebase";
+import { postsRef, useAuth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,6 +13,7 @@ function PostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const currentUser = useAuth();
+  const navigate = useNavigate();
   
 
 
@@ -27,7 +29,8 @@ function PostForm() {
       },
 
     });
-  response && console.log('Post added'); 
+  response && alert('Post added');
+  response && navigate('/'); 
   };
 
 

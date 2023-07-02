@@ -1,7 +1,6 @@
 import React from "react";
 import { deleteDoc, doc } from "firebase/firestore";
-import { postsRef } from "./firebase";
-import { useAuth } from "./firebase";
+import { useAuth, postsRef } from "../../firebase";
 
 function Post({ post }) {
   const currentUser = useAuth();

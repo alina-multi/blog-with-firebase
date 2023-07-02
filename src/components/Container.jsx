@@ -2,14 +2,15 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import Header from "./Header";
-import Home from "./pages/Home";
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
-import EditProfile from "./pages/EditProfile";
-import NotFound from "./pages/NotFound";
-import PostForm from "./PostForm";
-import Profile from "./pages/Profile";
-import {useAuth} from "./firebase"
+import Home from "../pages/Home";
+import LogIn from "./Auth/LogIn";
+import SignUp from "./Auth/SignUp";
+import EditProfile from "../pages/EditProfile";
+import NotFound from "../pages/NotFound";
+import PostForm from "../pages/AddPost";
+import Profile from "../pages/Profile";
+import {useAuth} from "../firebase"
+import About from "../pages/About";
 
 export default function Container() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,6 +31,7 @@ export default function Container() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
 
         <Route
           path="/signup"
@@ -84,5 +86,10 @@ export default function Container() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
+
+
+
+
+
   );
 }
