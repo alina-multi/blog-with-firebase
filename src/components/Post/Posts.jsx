@@ -1,28 +1,29 @@
 import React from "react";
-import Post from "../../Post";
+import Post from "./Post";
 
 
 
 function Posts({ posts }) {
   
 
-  return (<div className=" py-24 sm:py-12">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+  return (
+        
         <div className="mx-auto max-w-2xl">
-         <div className="text-center"> <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-            Random Posts
-          </h2>
-          </div>
+         
 
-          <ul className="mt-10 space-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16">
+          <ul className="mt-6 divide-y-4 divide-gray-900">
       {posts.map((post) => (
-        <li key={post.id}>
-            <Post post={post} />
+        <li key={post.id} className="flex flex-col items-start justify-between bg-white/5 p-6 ">
+      
+          <Post post={post} />
+        
+           
         </li>
       ))}  </ul>
+
         </div>
-      </div>
-      </div>
+ 
+  
   
   )
 }

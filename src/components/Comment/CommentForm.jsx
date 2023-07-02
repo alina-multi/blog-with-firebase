@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addDoc } from "firebase/firestore";
-import { commentsRef } from './firebase';
+import { commentsRef } from '../../firebase';
 import { serverTimestamp } from "firebase/firestore";
 
 function CommentForm({ postId, user }) {

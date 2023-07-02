@@ -5,8 +5,7 @@ import {
   AuthErrorCodes,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { useAuth, usersRef } from "./firebase";
-import { addDoc, serverTimestamp } from "firebase/firestore";
+
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -26,10 +25,10 @@ function SignUp() {
       );
       const user = userCredential.user;
       await updateProfile(user, { displayName: username });
-      const currentUser = auth.currentUser;
-     
+    
 
-      // navigate(`/profile/${user.uid}`);
+
+      // navigate(`/editprofile/${user.uid}`);
     } catch (error) {
       if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
         setIsError(error.message);
@@ -41,23 +40,6 @@ function SignUp() {
     }
 
 
-    console.log("user", auth.currentUser.uid);
-
-    try {
-      const res = await addDoc(usersRef, {
-        uid: auth.currentUser.uid,
-        username,
-        email,
-        createdAt: serverTimestamp(),
-        firstName: "",
-        lastName: "",
-        avatar: null,
-
-      });
-      console.log("res", res);
-    } catch (error) {
-      console.log("error", error);
-    }
 
    
   };
