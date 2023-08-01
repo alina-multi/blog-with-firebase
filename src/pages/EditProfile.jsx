@@ -12,8 +12,6 @@ export default function EditProfile() {
   );
   const [photoURL, setPhotoURL] = useState(null);
   const [username, setUsername] = useState("");
-  // const [firstName, setFirstName] = useState(currentUser?.firstName);
-  // const [lastName, setLastName] = useState(currentUser?.lastName);
 
   useEffect(() => {
     if (currentUser) {
@@ -75,45 +73,6 @@ export default function EditProfile() {
             </div>
           </div>
 
-          {/* <div className="sm:col-span-3">
-          <label
-            htmlFor="first-name"
-            className="block text-sm font-medium leading-6 text-white"
-          >
-            First name
-          </label>
-          <div className="mt-2">
-            <input
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
-              type="text"
-              name="first-name"
-              id="first-name"
-              autoComplete="given-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-3">
-          <label
-            htmlFor="last-name"
-            className="block text-sm font-medium leading-6 text-white"
-          >
-            Last name
-          </label>
-          <div className="mt-2">
-            <input
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
-              type="text"
-              name="last-name"
-              id="last-name"
-              autoComplete="family-name"
-              className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div> */}
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">

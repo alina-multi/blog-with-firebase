@@ -1,27 +1,22 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-
-import Logo from "./atoms/Logo";
+import { useUser } from "../utils/userContext";
 import PopoverMenu from "./Popover";
-
 
 const navigation = [
   { name: "All posts", href: "/" },
-  { name: "Authors", href: "/users" },
   { name: "About", href: "/about" },
 ];
 
-
-
 export default function Header() {
-  const auth = getAuth();
-  const user = auth.currentUser;
-
+  const { currentUser } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
 
   return (
     <header className="bg-gray-900">
@@ -55,30 +50,27 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
-            <a
+            <NavLink
               key={item.name}
-              href={item.href}
+              to={item.href}
               className="text-sm font-semibold leading-6 text-white"
             >
               {item.name}
-            </a>
+            </NavLink>
           ))}
         </div>
-        {user ? (
+        {currentUser ? (
           <div className="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-x-12">
             <NavLink
-             to={`/addpost/${user.uid}`}
+              to={`/addpost`}
               className="text-sm font-semibold leading-6 text-white"
             >
               <span className="flex gap-1">
-              
-              Add Post
-              <PlusCircleIcon className="h-6 w-6 text-green-600" />
+                Add Post
+                <PlusCircleIcon className="h-6 w-6 text-green-600" />
               </span>
-              
             </NavLink>
             <PopoverMenu />
-
           </div>
         ) : (
           <div className="hidden lg:flex lg:items-center lg:justify-end lg:flex-1 lg:gap-x-12">
@@ -106,7 +98,7 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
@@ -151,4 +143,3 @@ export default function Header() {
     </header>
   );
 }
-

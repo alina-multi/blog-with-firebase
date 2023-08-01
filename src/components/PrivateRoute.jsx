@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { useUser } from '../utils/userContext';
 
-
-export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
-    const { isLoggedIn, isRefreshing } = useAuth();
-    const shouldRedirect = !isLoggedIn && !isRefreshing;
-  
-    return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
+ const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
+    const { currentUser } = useUser();  
+    return !currentUser ? <Navigate replace to={redirectTo}  /> : Component;
   };
+
+  export default PrivateRoute;

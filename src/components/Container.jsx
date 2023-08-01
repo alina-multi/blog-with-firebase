@@ -12,6 +12,7 @@ import Profile from "../pages/Profile";
 import {useAuth} from "../firebase"
 import About from "../pages/About";
 
+
 export default function Container() {
   const [currentUser, setCurrentUser] = useState(null);
   const auth = getAuth();
@@ -29,7 +30,7 @@ export default function Container() {
   return (
     <div className="mx-auto container  ">
       <Header />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
 
@@ -84,7 +85,9 @@ export default function Container() {
           }
         />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+      </Routes> */}
+
+      
     </div>
 
 
