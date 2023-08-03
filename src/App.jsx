@@ -2,11 +2,12 @@ import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import Header from "./components/Header";
-import { useUser } from "./utils/userContext";
 import SignUp from "./pages/Auth/SignUp";
 import LogIn from "./pages/Auth/LogIn";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/Loading";
+import { useContext } from "react";
+import { AuthContext } from "./store/AuthContext";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -15,7 +16,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 const AddPost = lazy(() => import("./pages/AddPost"));
 
 function App() {
-  const { currentUser } = useUser();
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>

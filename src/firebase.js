@@ -8,7 +8,7 @@ import { updateProfile } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKUaZI1MzzETrYa6uQoEAFzbhpFOKcR8k",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "blog-c9a2d.firebaseapp.com",
   projectId: "blog-c9a2d",
   storageBucket: "blog-c9a2d.appspot.com",
@@ -22,20 +22,24 @@ export const db = getFirestore(app);
 
 export const postsRef = collection(db, "posts");
 export const commentsRef = collection(db, "comments");
+export const usersRef = collection(db, "users");
 
 export const auth = getAuth();
 const storage = getStorage();
 
-export function useAuth() {
-  const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
-    return unsub;
-  }, []);
+// export function useAuth() {
+//   const [currentUser, setCurrentUser] = useState(null);
+ 
 
-  return currentUser;
-}
+//   useEffect(() => {
+//     const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
+//     return unsub;
+//   }, []);
+
+
+//   return currentUser;
+// }
 
 // Storage
 export async function upload(file, currentUser, setLoading) {

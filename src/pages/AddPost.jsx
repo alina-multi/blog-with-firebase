@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Tab } from '@headlessui/react'
 import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid';
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsRef, useAuth } from "../firebase";
+import { postsRef } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../store/AuthContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,21 +13,16 @@ function classNames(...classes) {
 function PostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const currentUser = useAuth();
+  const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate();
-  
-
 
    const addPost = async (title, content) => {
+    console.log(currentUser.uid);
     const response = await addDoc(postsRef, {
       title,
       description : content,
       createdAt: serverTimestamp(),
-      author: {
-        id: currentUser.uid,
-        name: currentUser.displayName,
-        imageUrl: currentUser.photoURL,
-      },
+      authorID: currentUser.uid,
 
     });
   response && alert('Post added');

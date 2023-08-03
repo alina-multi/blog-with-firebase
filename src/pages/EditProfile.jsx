@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
-import { useAuth, upload } from "../firebase";
+import { useState, useEffect, useContext } from "react";
+import {  upload } from "../firebase";
 import Cropper from "../components/Cropper";
 import { updateProfile } from "firebase/auth";
-
+import { AuthContext } from "../store/AuthContext";
 
 export default function EditProfile() {
-  const currentUser = useAuth();
+  const {currentUser} = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
   );
   const [photoURL, setPhotoURL] = useState(null);
   const [username, setUsername] = useState("");
+
 
   useEffect(() => {
     if (currentUser) {

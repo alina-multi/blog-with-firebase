@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { register } from "../../utils/auth";
 import Input from "../../components/atoms/Input";
+import { useContext } from "react";
+import { AuthContext } from "../../store/AuthContext";
+
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [isError, setIsError] = useState(null);
+  const {dispatch} = useContext(AuthContext);
+  
 
   const submit = (e) => {
+
     e.preventDefault();
-    register(email, password, username, setIsError);
+    register(email, password, username, setIsError, dispatch);
   };
 
   return (

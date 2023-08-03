@@ -4,6 +4,7 @@ import Post from "./Post";
 
 
 function Posts({ posts }) {
+ 
   
 
   return (

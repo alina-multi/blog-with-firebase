@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import CropperModal from "./CropperModal";
-import { useAuth } from "../firebase";
+import { AuthContext } from "../store/AuthContext";
+
 
 export default function Cropper({ preview, setPreview, setPhotoURL}) {
   
@@ -8,7 +9,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const inputRef = useRef();
-  const currentUser = useAuth();
+  const {currentUser} = useContext(AuthContext);
 
   useEffect(() => {
   

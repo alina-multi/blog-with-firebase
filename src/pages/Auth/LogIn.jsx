@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../components/atoms/Input";
 import {login} from '../../utils/auth'
+import { AuthContext } from "../../store/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isError, setIsError] = useState(null);
 
+  const {dispatch} = useContext(AuthContext);
+
+
   const submit =  (e) => {
     e.preventDefault();
-    login(email, password, setIsError)
+    login(email, password, setIsError, dispatch)
   };
 
   return (

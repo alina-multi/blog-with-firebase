@@ -1,9 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useContext,  } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../utils/auth";
+import { AuthContext } from "../store/AuthContext";
 
 const options = [
   { name: "My Profile", href: "/profile" },
@@ -12,9 +13,11 @@ const options = [
 
 export default function PopoverMenu() {
   const navigate = useNavigate();
+  const {dispatch} = useContext(AuthContext);
+
 
   const logOut = async () => {
-    logout();
+    logout(dispatch);
     navigate("/login");
   };
 

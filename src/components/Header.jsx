@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Dialog } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -6,8 +6,10 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
-import { useUser } from "../utils/userContext";
+
 import PopoverMenu from "./Popover";
+import { AuthContext } from "../store/AuthContext";
+
 
 const navigation = [
   { name: "All posts", href: "/" },
@@ -15,7 +17,8 @@ const navigation = [
 ];
 
 export default function Header() {
-  const { currentUser } = useUser();
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

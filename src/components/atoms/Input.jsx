@@ -7,9 +7,10 @@ const Input = ({
   autoComplete,
   required,
   type,
+  placeholder,
 }) => {
   return (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={id}
         className="block text-sm font-medium leading-6 text-white"
@@ -18,6 +19,7 @@ const Input = ({
       </label>
       <div className="mt-2">
         <input
+          placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           id={id}

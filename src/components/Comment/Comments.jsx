@@ -32,9 +32,17 @@ function Comments({ postId }) {
   return (
     <div>
       {comments.map((comment) => (
-        <div key={comment.id}>
+        <div key={comment.id} className='flex items-center'>
+          <img
+            src={comment.photo}
+            alt=""
+            className="h-10 w-10 rounded-full bg-gray-400"
+          />
           <p>{comment.username}: {comment.text}</p>
-          <button onClick={() => deleteComment(comment.id)}>Delete Comment</button>
+          {/* <button onClick={() => deleteComment(comment.id)}>Delete Comment</button> */}
+
+          {/* <p>{comment.username}: {comment.text}</p>
+          <button onClick={() => deleteComment(comment.id)}>Delete Comment</button> */}
         </div>
       ))}
     </div>
