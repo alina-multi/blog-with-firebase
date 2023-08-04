@@ -1,43 +1,37 @@
-import {createContext, useEffect, useReducer} from 'react';
-import AuthReducer from './AuthReducer';
-import {auth} from '../firebase';
+import { createContext, useEffect, useReducer } from "react";
+import AuthReducer from "./AuthReducer";
+import { auth } from "../firebase";
 
 const INITIAL_STATE = {
-    currentUser:  JSON.parse(localStorage.getItem('user')) || null,
-
+  currentUser: JSON.parse(localStorage.getItem("user")) || null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
 
-export const AuthContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
-
-
-useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(state.currentUser));
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state.currentUser));
 
     const unsub = auth.onAuthStateChanged((user) => {
-        if (user && state.currentUser?.uid === user?.uid) {
-            return ;
-        }
-        else {
-           dispatch({type: 'LOGOUT'});
-        }
-    }
-    );
-    return () => unsub()
+      if (user && state.currentUser?.uid === user?.uid) {
+        return;
+      } else {
+        dispatch({ type: "LOGOUT" });
+      }
+    });
+    return () => unsub();
+  }, [state.currentUser]);
 
-}, [state.currentUser]);
-
-    return (
-        <AuthContext.Provider
-        value={{
-            currentUser: state.currentUser,
-            dispatch,
-        }}
-        >
-            {children}
-        </AuthContext.Provider>
-    );
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser: state.currentUser,
+        dispatch,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};

@@ -1,34 +1,23 @@
-import { useState, useEffect, useContext } from "react";
-import {  upload } from "../firebase";
+import { useState, useContext } from "react";
 import Cropper from "../components/Cropper";
-import { updateProfile } from "firebase/auth";
+import { updateProfileData, upload} from "../utils/handleProfile";
 import { AuthContext } from "../store/AuthContext";
 
 export default function EditProfile() {
-  const {currentUser} = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
-  const [preview, setPreview] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-  );
+  const { currentUser, dispatch } = useContext(AuthContext);
+  const [preview, setPreview] = useState(currentUser.photoURL);
   const [photoURL, setPhotoURL] = useState(null);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(currentUser.displayName);
 
-
-  useEffect(() => {
-    if (currentUser) {
-      setUsername(currentUser.displayName);
-      setPreview(currentUser.photoURL);
-    }
-  }, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (photoURL) {
-      upload(photoURL, currentUser, setLoading);
-    }
-    await updateProfile (currentUser, { displayName: username });
-    
+    let url = currentUser.photoURL;
+   if (photoURL) {
+     url = await upload(photoURL, currentUser)
+   }
+   
+    updateProfileData({ displayName: username, photoURL:url}, dispatch);
   };
 
   return (
@@ -73,7 +62,6 @@ export default function EditProfile() {
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">

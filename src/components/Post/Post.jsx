@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { deleteDoc, doc } from "firebase/firestore";
 import {  postsRef } from "../../firebase";
 import CommentForm from "../Comment/CommentForm";
@@ -13,35 +13,49 @@ import  {fetchUser} from '../../utils/auth';
 
 
 
-function Post({ post }) {
+
+
+function Post({ post,activePost, setActivePost }) {
   const { currentUser } = useContext(AuthContext);
-  const [showComments, setShowComments] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [author, setAuthor] = useState(null);
   const [isMyPost, setIsMyPost] = useState(false);
 
 
+  const isOpen = activePost === post.id;
+
+
+  const handleShowInput = () => {
+    if (!currentUser) {
+      alert("You must be logged in to comment");
+      return;
+    }
+
+    setActivePost(post.id);
+
+
+    
+
+    
+    
+
+
+  };
 
 useEffect(() => {
 
    fetchUser(post.authorID).then((user) => setAuthor(user));
     setIsMyPost(post?.authorID === currentUser?.uid);
 
-}, []);
+}, [ post, currentUser?.uid]);
 
 
   const deletePost = async (id) => {
     const response = await deleteDoc(doc(postsRef, id));
-    response && console.log("Post deleted");
+    response && alert("Post deleted");
   };
 
-  const onCommentButton = () => {
-    if (!currentUser) {
-      alert("You must be logged in to comment");
-      return;
-    }
-    setShowComments((prev) => !prev);
-  };
+ 
 
   const onBookmarkButton = () => {
     if (!currentUser) {
@@ -52,7 +66,7 @@ useEffect(() => {
   };
 
   return (
-    <div class="w-full space-y-6">
+    <div className="w-full space-y-6">
       <article className="w-full flex flex-col gap-3 ">
         <div className="flex justify-between  ">
           <a href="/" className="flex items-center gap-x-4">
@@ -100,7 +114,7 @@ useEffect(() => {
          className="bg-white/10 rounded-full px-3 py-1 font-semibold border border-gray-700 "></button> */}
             {/* <BookmarkIcon className="h-6 w-6 text-gray-400" aria-hidden="true" /> */}
 
-            <button onClick={onCommentButton}>
+            <button onClick={handleShowInput}>
               <ChatBubbleBottomCenterTextIcon
                 className="h-6 w-6 text-gray-400"
                 aria-hidden="true"
@@ -123,9 +137,9 @@ useEffect(() => {
         </div>
       </article>
 
-      <Comments postId={post.id} showComments={showComments} />
+      <Comments postId={post.id} />
 
-      {showComments && (
+      { isOpen && (
         <div className="">
           <CommentForm postId={post.id} />
         </div>
@@ -137,18 +151,11 @@ useEffect(() => {
 export default Post;
 
 
-        {/* <img
-        src={
-          post.author.imageUrl
-            ? post.author.imageUrl
-            : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
-        }
-        alt=""
-        className="h-10 w-10 rounded-full bg-gray-50"
-      />
-      <h2>{post.title}</h2>
-      <p>{post.description}</p>
-      <p>{post.author.name}</p>
-      <p>{post.id}</p>
-      <p>{post.href}</p>
-      <p></p> */}
+
+//postId null
+// при клике на кнопку комментарий открываеться ф
+
+
+
+
+      

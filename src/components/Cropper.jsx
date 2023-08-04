@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef} from "react";
 import CropperModal from "./CropperModal";
-import { AuthContext } from "../store/AuthContext";
+
 
 
 export default function Cropper({ preview, setPreview, setPhotoURL}) {
@@ -9,14 +9,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const inputRef = useRef();
-  const {currentUser} = useContext(AuthContext);
-
-  useEffect(() => {
-  
-    if (currentUser?.photoURL) {
-      setPreview(currentUser.photoURL);
-    }
-  }, [currentUser]);
+ 
 
 
   const handleImgChange = (e) => {

@@ -9,6 +9,7 @@ import { setDoc, doc } from "firebase/firestore";
 
 import { getDoc } from "firebase/firestore";
 
+
 export const fetchUser = async (uid) => {
   const docSnap = await getDoc(doc(usersRef, uid));
   let user = {};
@@ -16,7 +17,7 @@ export const fetchUser = async (uid) => {
   if (docSnap.exists()) {
     user = docSnap.data();
   } else {
-    console.log("No such document!");
+  
   }
 
   return user;

@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import Input from "../../components/atoms/Input";
 import {login} from '../../utils/auth'
 import { AuthContext } from "../../store/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function LogIn() {
   const [email, setEmail] = useState("");

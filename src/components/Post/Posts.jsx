@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import Post from "./Post";
+import { useState } from "react";
 
 
 
 function Posts({ posts }) {
- 
-  
+  const [activePost, setActivePost] = useState(null);
+
 
   return (
         
@@ -16,7 +17,7 @@ function Posts({ posts }) {
       {posts.map((post) => (
         <li key={post.id} className="flex flex-col items-start justify-between bg-white/5 p-6 ">
       
-          <Post post={post} />
+          <Post post={post}  activePost={activePost} setActivePost={setActivePost} />
         
            
         </li>

@@ -18,7 +18,7 @@ function CommentForm({ postId }) {
       await addDoc(commentsRef, {
         postId,
         text,
-        username: currentUser.displayName,
+        authorID: currentUser.uid,
         createdAt: serverTimestamp(),
         photo: currentUser.photoURL,
         

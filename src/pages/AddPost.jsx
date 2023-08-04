@@ -17,7 +17,7 @@ function PostForm() {
   const navigate = useNavigate();
 
    const addPost = async (title, content) => {
-    console.log(currentUser.uid);
+
     const response = await addDoc(postsRef, {
       title,
       description : content,

@@ -18,7 +18,7 @@ const navigation = [
 
 export default function Header() {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
