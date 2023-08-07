@@ -66,41 +66,23 @@ useEffect(() => {
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-6 py-6 px-9  hover:bg-zinc-300">
       <article className="w-full flex flex-col gap-3 ">
         <div className="flex justify-between  ">
           <a href="/" className="flex items-center gap-x-4">
             <img
               src={author?.photoURL}
               alt=""
-              className="h-10 w-10 rounded-full bg-gray-400"
+              className="h-10 w-10 rounded-full bg-zinc-400"
             />
 
-            <p className="font-semibold text-sm leading-6 text-gray-300">
+            <p className="font-semibold text-sm leading-6">
               {author?.displayName}
             </p>
           </a>
 
-          {isMyPost && (
-            <button
-              onClick={() => deletePost(post.id)}
-              className=" hover:bg-gray-800 text-red-600 text-xs font-bold py-2 px-4 rounded-full"
-            >
-              Delete
-            </button>
-          )}
-        </div>
-
-
-        <div className="flex flex-col gap-3  ">
-          <h3 className="text-xl font-semibold leading-6 ">{post.title}</h3>
-          <p className=" line-clamp-3 leading-6 text-gray-300">
-            {post.description}
-          </p>
-        </div>
-
-        <div className="flex justify-between items-center text-xs text-gray-400">
-          <time>
+<div class="flex gap-3 items-center text-xs text-zinc-700">
+<time>
             {post.createdAt.toDate().toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
@@ -108,27 +90,59 @@ useEffect(() => {
               day: "numeric",
             })}
           </time>
+          {isMyPost && (
+            <>
+           
+            <button
+              onClick={() => deletePost(post.id)}
+              className=" hover:bg-zinc-800 text-zinc-600 text-xs font-bold py-1 px-3 rounded-full border border-zinc-400 leading-3"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => deletePost(post.id)}
+              className=" hover:bg-zinc-800 text-zinc-400 text-xs font-bold py-1 px-2 rounded-full border border-zinc-300 leading-3"
+            >
+              Delete
+            </button>
+            </>
+
+           
+
+            
+          )}
+  </div>
+         
+        </div>
+
+
+        <div className="flex flex-col gap-3  ">
+          <h3 className="text-xl font-semibold leading-6 ">{post.title}</h3>
+          <p className=" line-clamp-3 leading-6 ">
+            {post.description}
+          </p>
+        </div>
+
+        <div className="flex justify-end items-center ">
+      
           <div className="flex items-center gap-3">
-            {/* <button
-          onClick={onCommentButton}
-         className="bg-white/10 rounded-full px-3 py-1 font-semibold border border-gray-700 "></button> */}
-            {/* <BookmarkIcon className="h-6 w-6 text-gray-400" aria-hidden="true" /> */}
+  
 
             <button onClick={handleShowInput}>
               <ChatBubbleBottomCenterTextIcon
-                className="h-6 w-6 text-gray-400"
+                className="h-6 w-6 text-zinc-700"
                 aria-hidden="true"
               />
             </button>
             <button onClick={onBookmarkButton}>
               {isBookmarked ? (
                 <BookmarkSlashIcon
-                  className="h-6 w-6 text-gray-400"
+                  className="h-6 w-6 text-zinc-700"
                   aria-hidden="true"
                 />
               ) : (
                 <BookmarkIcon
-                  className="h-6 w-6 text-gray-400"
+                  className="h-6 w-6 text-zinc-700"
                   aria-hidden="true"
                 />
               )}

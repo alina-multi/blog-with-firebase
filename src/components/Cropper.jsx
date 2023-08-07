@@ -47,7 +47,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
         <button
           type="button"
           onClick={handleInputClick}
-          className="rounded-lg bg-indigo-500 text-white px-4 py-2"
+          className="rounded-lg bg-sky-500 text-white px-4 py-2"
         >
           Select Image
         </button>

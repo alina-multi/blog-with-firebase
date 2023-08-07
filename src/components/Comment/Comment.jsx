@@ -29,7 +29,7 @@ export default function Commment ({comment}) {
         <img
           src={comment.photo}
           alt=""
-          className="h-10 w-10 rounded-full bg-gray-400"
+          className="h-10 w-10 rounded-full bg-zinc-400"
         />
         <p>{comment.username}: {comment.text}</p>
         <button onClick={() => deleteComment(comment.id)}>Delete Comment</button>

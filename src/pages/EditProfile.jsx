@@ -27,7 +27,7 @@ export default function EditProfile() {
           <h2 className="text-base font-semibold leading-7 text-white">
             EditProfile
           </h2>
-          <p className="mt-1 text-sm leading-6 text-gray-400">
+          <p className="mt-1 text-sm leading-6 text-zinc-400">
             This information will be displayed publicly so be careful what you
             share.
           </p>
@@ -46,7 +46,7 @@ export default function EditProfile() {
               Username
             </label>
             <div className="mt-2">
-              <div className="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
+              <div className="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-500">
                 <span className="flex select-none items-center pl-3  sm:text-sm">
                   @
                 </span>
@@ -73,7 +73,7 @@ export default function EditProfile() {
           </button>
           <button
             type="submit"
-            className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            className="rounded-md bg-sky-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
           >
             Save
           </button>

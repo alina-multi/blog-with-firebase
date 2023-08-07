@@ -5,11 +5,12 @@ import Header from "./components/Header";
 import SignUp from "./pages/Auth/SignUp";
 import LogIn from "./pages/Auth/LogIn";
 import PrivateRoute from "./components/PrivateRoute";
-import Loading from "./components/Loading";
+import Loading from "./components/atoms/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./store/AuthContext";
 
 const Home = lazy(() => import("./pages/Home"));
+const Posts = lazy(() => import("./pages/Posts"));
 const About = lazy(() => import("./pages/About"));
 const EditProfile = lazy(() => import("./pages/EditProfile"));
 const Profile = lazy(() => import("./pages/Profile"));
@@ -19,11 +20,12 @@ function App() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <>
+    <div className="flex gap-6 ">
       <Header />
       <Suspense fallback={<Loading/>}>
         <Routes>
-          <Route index element={<Home />} />
+        <Route index element={<Home />} />
+          <Route path="/posts" element={<Posts />} />
           <Route path="about" element={<About />} />
           <Route
             path="/signup"
@@ -58,7 +60,7 @@ function App() {
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Suspense>
-    </>
+    </div>
   );
 }
 

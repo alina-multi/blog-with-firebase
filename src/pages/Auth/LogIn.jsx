@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Input from "../../components/atoms/Input";
 import {login} from '../../utils/auth'
 import { AuthContext } from "../../store/AuthContext";
+import Container from "../../components/Layout";
 
 function LogIn() {
   const [email, setEmail] = useState("");
@@ -17,14 +18,11 @@ function LogIn() {
   };
 
   return (
-    <>
+    <Container>
+      <div className="h-screen my-auto">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-            alt="Your Company"
-          />
+         
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
             Sign in to your account
           </h2>
@@ -60,7 +58,7 @@ function LogIn() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                className="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 Sign in
               </button>
@@ -68,7 +66,8 @@ function LogIn() {
           </form>
         </div>
       </div>
-    </>
+      </div>
+    </Container>
   );
 }
 

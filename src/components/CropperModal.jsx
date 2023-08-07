@@ -50,7 +50,7 @@ export default function CropperModal({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-zinc-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -91,7 +91,7 @@ export default function CropperModal({
                         value={slideValue}
                         onChange={(e) => setSlideValue(e.target.value)}
                         type="range"
-                        className="transparent accent-indigo-500 h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
+                        className="transparent accent-sky-500 h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
                         id="zoom"
                       />
                       <span className="bg-red-500"> {slideValue}</span>
@@ -101,14 +101,14 @@ export default function CropperModal({
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+                    className="inline-flex w-full justify-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:col-start-2"
                     onClick={() => handleSave()}
                   >
                     Save
                   </button>
                   <button
                     type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 sm:col-start-1 sm:mt-0"
                     onClick={handleCancel}
                   >
                     Cancel
