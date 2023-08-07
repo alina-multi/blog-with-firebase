@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef} from "react";
 import CropperModal from "./CropperModal";
-import { useAuth } from "../firebase";
+
+
 
 export default function Cropper({ preview, setPreview, setPhotoURL}) {
   
@@ -8,14 +9,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const inputRef = useRef();
-  const currentUser = useAuth();
-
-  useEffect(() => {
-  
-    if (currentUser?.photoURL) {
-      setPreview(currentUser.photoURL);
-    }
-  }, [currentUser]);
+ 
 
 
   const handleImgChange = (e) => {
@@ -53,7 +47,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
         <button
           type="button"
           onClick={handleInputClick}
-          className="rounded-lg bg-indigo-500 text-white px-4 py-2"
+          className="rounded-lg bg-sky-500 text-white px-4 py-2"
         >
           Select Image
         </button>

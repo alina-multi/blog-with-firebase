@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { commentsRef } from '../../firebase';
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from '../../firebase';
+import Comment from './Comment';
+
 
 function Comments({ postId }) {
   const [comments, setComments] = useState([]);
+  
 
   useEffect(() => {
     const q = query(
       commentsRef,
       where('postId', '==', postId),
-      orderBy('createdAt', 'desc')
+      // orderBy('createdAt', 'desc')
     );
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const comments = snapshot.docs.map((doc) => ({
@@ -24,20 +25,19 @@ function Comments({ postId }) {
     return () => unsubscribe();
   }, [postId]);
 
-  const deleteComment = async (id) => {
-    const commentDoc = doc(db, 'comments', id);
-    await deleteDoc(commentDoc);
-  };
+  // const deleteComment = async (id) => {
+  //   const commentDoc = doc(db, 'comments', id);
+  //   await deleteDoc(commentDoc);
+  // };
 
   return (
-    <div>
+<>
       {comments.map((comment) => (
-        <div key={comment.id}>
-          <p>{comment.username}: {comment.text}</p>
-          <button onClick={() => deleteComment(comment.id)}>Delete Comment</button>
-        </div>
+        <ul key={comment.id} >
+         <Comment comment={comment} />
+        </ul>
       ))}
-    </div>
+</>
   );
 }
 

@@ -1,27 +1,27 @@
-import React from "react";
 import Post from "./Post";
+import { useState } from "react";
 
 
 
 function Posts({ posts }) {
-  
+  const [activePost, setActivePost] = useState(null);
 
-  return (
-        
-        <div className="mx-auto max-w-2xl">
+
+  return (<>
+
          
 
-          <ul className="mt-6 divide-y-4 divide-gray-900">
+          <ul >
       {posts.map((post) => (
-        <li key={post.id} className="flex flex-col items-start justify-between bg-white/5 p-6 ">
+        <li key={post.id} className="flex flex-col items-start justify-between bg-zinc-200  border-b  border-zinc-800">
       
-          <Post post={post} />
+          <Post post={post}  activePost={activePost} setActivePost={setActivePost} />
         
            
         </li>
       ))}  </ul>
 
-        </div>
+</>
  
   
   

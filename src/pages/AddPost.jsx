@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Tab } from '@headlessui/react'
 import { AtSymbolIcon, CodeBracketIcon, LinkIcon } from '@heroicons/react/20/solid';
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsRef, useAuth } from "../firebase";
+import { postsRef } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../store/AuthContext";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,21 +13,16 @@ function classNames(...classes) {
 function PostForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const currentUser = useAuth();
+  const {currentUser} = useContext(AuthContext);
   const navigate = useNavigate();
-  
-
 
    const addPost = async (title, content) => {
+
     const response = await addDoc(postsRef, {
       title,
       description : content,
       createdAt: serverTimestamp(),
-      author: {
-        id: currentUser.uid,
-        name: currentUser.displayName,
-        imageUrl: currentUser.photoURL,
-      },
+      authorID: currentUser.uid,
 
     });
   response && alert('Post added');
@@ -44,7 +40,7 @@ function PostForm() {
   return (
     <>
     <form action="POST"  onSubmit={handleSubmit} className='mx-auto w-1/2 mt-12'>
-    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required  className='text-lg w-full mb-6 block rounded-md border-0 py-1.5 bg-gray-800  shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 '/>
+    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required  className='text-lg w-full mb-6 block rounded-md border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 '/>
       <Tab.Group>
         {({ selectedIndex }) => (
           <>
@@ -53,8 +49,8 @@ function PostForm() {
                 className={({ selected }) =>
                   classNames(
                     selected
-                      ? 'bg-gray-800  hover:bg-gray-700'
-                      : ' hover:bg-gray-700 ',
+                      ? 'bg-zinc-800  hover:bg-zinc-700'
+                      : ' hover:bg-zinc-700 ',
                     'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
                   )
                 }
@@ -65,8 +61,8 @@ function PostForm() {
                 className={({ selected }) =>
                 classNames(
                   selected
-                    ? 'bg-gray-800  hover:bg-gray-700'
-                    : ' hover:bg-gray-700 ',
+                    ? 'bg-zinc-800  hover:bg-zinc-700'
+                    : ' hover:bg-zinc-700 ',
                   'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
                 )
                 }
@@ -80,7 +76,7 @@ function PostForm() {
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 hover:text-zinc-500"
                     >
                       <span className="sr-only">Insert link</span>
                       <LinkIcon className="h-5 w-5" aria-hidden="true" />
@@ -89,7 +85,7 @@ function PostForm() {
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 hover:text-zinc-500"
                     >
                       <span className="sr-only">Insert code</span>
                       <CodeBracketIcon className="h-5 w-5" aria-hidden="true" />
@@ -98,7 +94,7 @@ function PostForm() {
                   <div className="flex items-center">
                     <button
                       type="button"
-                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
+                      className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 hover:text-zinc-500"
                     >
                       <span className="sr-only">Mention someone</span>
                       <AtSymbolIcon className="h-5 w-5" aria-hidden="true" />
@@ -121,7 +117,7 @@ function PostForm() {
                     name="post"
                     id="post"
                     required
-                    className="block w-full text-lg rounded-md border-0 py-1.5 bg-gray-800  shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm lg:text-base sm:leading-6"
+                    className="block w-full text-lg rounded-md border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm lg:text-base sm:leading-6"
                     placeholder="Add your post..."
                 
                   />
@@ -141,7 +137,7 @@ function PostForm() {
       <div className="mt-2 flex justify-end">
         <button
           type="submit"
-          className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
         >
           Post
         </button>
