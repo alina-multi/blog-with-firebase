@@ -4,7 +4,7 @@ import { commentsRef } from '../../firebase';
 import Comment from './Comment';
 
 
-function Comments({ postId }) {
+function Comments({ postId, setIsNewComment, isNewComment }) {
   const [comments, setComments] = useState([]);
   
 
@@ -34,7 +34,7 @@ function Comments({ postId }) {
 <>
       {comments.map((comment) => (
         <ul key={comment.id} >
-         <Comment comment={comment} />
+         <Comment comment={comment} setIsNewComment={setIsNewComment} isNewComment={isNewComment}/>
         </ul>
       ))}
 </>

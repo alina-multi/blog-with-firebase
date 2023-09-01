@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { CommandLineIcon, GlobeAsiaAustraliaIcon, HomeIcon } from '@heroicons/react/20/solid';
+import { CommandLineIcon, GlobeAsiaAustraliaIcon, HomeIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 
 
 
@@ -8,6 +8,7 @@ const navigation = [
   { name: "HOME", href: "/", icon: HomeIcon },
   { name: "ALL POSTS", href: "/posts", icon: GlobeAsiaAustraliaIcon },
   { name: "ABOUT", href: "/about", icon: CommandLineIcon },
+  {name: "CONTACT", href: "/contact", icon: EnvelopeIcon }
 ];
 
 export default function SideNav() {

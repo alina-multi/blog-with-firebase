@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/atoms/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./store/AuthContext";
+// import Contact from "./pages/contact";
 
 const Home = lazy(() => import("./pages/home"));
 const Posts = lazy(() => import("./pages/posts"));
@@ -16,6 +17,7 @@ const EditProfile = lazy(() => import("./pages/editProfile"));
 const Profile = lazy(() => import("./pages/profile"));
 const AddPost = lazy(() => import("./pages/addPost"));
 const Post = lazy(() => import("./pages/post"));
+const Contact = lazy(() => import("./pages/contact"));
 const HeaderTop = lazy(() => import("./components/HeaderTop"));
 
 function App() {
@@ -27,10 +29,13 @@ function App() {
       <HeaderTop />
       <Suspense fallback={<Loading/>}>
         <Routes>
-        <Route index element={<Home />} />
+        <Route index path="/" exact element={<Home />} />
           <Route path="posts" element={<Posts />} />
           <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+
           <Route path="post/:postId" element={<Post />} />
+
           <Route
             path="/signup"
             element={currentUser ? <Navigate replace to={`/`} /> : <SignUp />}

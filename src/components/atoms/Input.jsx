@@ -10,14 +10,17 @@ const Input = ({
   placeholder,
 }) => {
   return (
-    <div className="w-full">
-      <label
+ <>
+ 
+   { text &&
+   <label
         htmlFor={id}
         className="block text-sm font-medium leading-6 text-zinc-100"
       >
         {text}
       </label>
-      <div className="mt-2">
+      }
+    
         <input
           placeholder={placeholder}
           value={value}
@@ -29,8 +32,8 @@ const Input = ({
           required={required}
           className="block w-full rounded-sm border-0 bg-white/5 py-1.5 text-zinc-100 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-sky-500 sm:text-sm sm:leading-6"
         />
-      </div>
-    </div>
+     
+      </>
   );
 };
 
