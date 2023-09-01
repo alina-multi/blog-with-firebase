@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import Input from "../../components/atoms/Input";
 import {login} from '../../utils/auth'
 import { AuthContext } from "../../store/AuthContext";
-import Container from "../../components/Layout";
+import Layout from "../../components/Layout";
+
 
 function LogIn() {
   const [email, setEmail] = useState("");
@@ -18,12 +19,14 @@ function LogIn() {
   };
 
   return (
-    <Container>
-      <div className="h-screen my-auto">
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <Layout>
+ 
+
+      <div className="h-screen ">
+      <div className="flex flex-1 flex-col justify-center px-6 pt-32 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
          
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-zinc-100">
             Sign in to your account
           </h2>
         </div>
@@ -58,7 +61,7 @@ function LogIn() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                className="flex w-full justify-center rounded-sm bg-sky-500 px-3 py-1.5 text-sm font-semibold leading-6 text-zinc-100 shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 Sign in
               </button>
@@ -67,7 +70,8 @@ function LogIn() {
         </div>
       </div>
       </div>
-    </Container>
+  
+      </Layout>
   );
 }
 

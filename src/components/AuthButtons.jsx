@@ -2,38 +2,36 @@ import { useContext } from "react";
 import { AuthContext } from "../store/AuthContext";
 import { NavLink } from "react-router-dom";
 import PopoverMenu from "../components/Popover";
-import {
-    Bars3Icon,
-    XMarkIcon,
-    PlusCircleIcon,
-  } from "@heroicons/react/24/outline";
-import { Popover } from "@headlessui/react";
+
 
 
 export default function AuthButtons() {
     const { currentUser } =  useContext(AuthContext);
     return (
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6 ">
         {!currentUser &&  
             <>  <NavLink
                  to="/login"
-                 className=" font-semibold leading-6 text-white"
+                 className=" font-semibold leading-6 text-zinc-100 rounded-sm  px-4 py-1 bg-sky-500/60 shadow-md"
                >
-                 Login
+                 LOGIN
                </NavLink>
                <NavLink
                  to="/signup"
-                 className="font-semibold leading-6 text-white"
+                 className="font-semibold leading-6 text-zinc-100   rounded-sm  px-4 py-1 bg-sky-500/60 shadow-md"
                >
-                 Sign Up<span aria-hidden="true">&rarr;</span>
+                 REGISTER
                </NavLink>
                </>
             }
    
            {currentUser &&  <div className="flex items-center gap-6">
+           <div>
+            <PopoverMenu />
+           </div>
                <NavLink
                  to={`/addpost`}
-                 className="flex items-center gap-1 border-sky-300 border bg-sky-300 text-zinc-900 px-4 leading-4  rounded-full py-1.5  font-medium"
+                 className="flex items-center gap-1 border-sky-400 border bg-sky-500 hover:bg-sky-600 text-zinc-100 px-4 leading-4  rounded-sm py-1.5  font-medium"
                >
                  <span >
                    Add Post
@@ -42,9 +40,7 @@ export default function AuthButtons() {
              
                </NavLink>
 
-           <div>
-            <PopoverMenu />
-           </div>
+          
 
                
                </div>}  

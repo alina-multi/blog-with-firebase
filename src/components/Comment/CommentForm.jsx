@@ -33,7 +33,7 @@ function CommentForm({ postId }) {
     <div className="flex items-center gap-x-4">
     <a href="/" className="flex items-center gap-x-4">
     <img
-      src={currentUser.photoURL}
+      src={currentUser?.photoURL}
       alt=""
       className="h-10 w-10 rounded-full bg-zinc-400"
     />
@@ -46,7 +46,7 @@ function CommentForm({ postId }) {
       setValue={setText}
       placeholder="Add a comment..." required />
 
-      <button type="submit" className='border-1 px-6 py-1 ring-2 ring-sky-600 rounded-md bg-sky-600'>Post</button>
+      <button type="submit" className='border-1 px-6 py-1 ring-2 ring-sky-600 rounded-sm bg-sky-600'>Post</button>
     </form>
 </div>
   );

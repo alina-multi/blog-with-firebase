@@ -1,14 +1,15 @@
 import { Fragment, useContext,  } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../utils/auth";
 import { AuthContext } from "../store/AuthContext";
+import {PencilSquareIcon, HomeModernIcon, PowerIcon} from '@heroicons/react/20/solid';
+
 
 const options = [
-  { name: "My Profile", href: "/profile" },
-  { name: "Edit Profile", href: "/editprofile" },
+  { name: "My Profile", href: "/profile", icon: HomeModernIcon },
+  { name: "Edit Profile", href: "/editprofile", icon: PencilSquareIcon },
 ];
 
 export default function PopoverMenu() {
@@ -25,13 +26,13 @@ export default function PopoverMenu() {
     <Popover className="relative">
       {({ open }) => (
         <>
-          <Popover.Button className="flex items-center gap-x-1  font-semibold leading-6 text-zinc-900">
+          <Popover.Button className="flex items-center gap-x-6  font-semibold leading-6 text-zinc-100 ring-0">
             <span className="sr-only">Open user menu</span>
             <span > {currentUser?.firstName || "Wizard"}</span>
             <img
-            src={currentUser?.photoURL}
+            src={currentUser?.photoURL || "https://i.pravatar.cc/300"}
             alt=""
-            className="h-10 w-10 rounded-full bg-zinc-400"
+            className="h-12 w-12 rounded-full bg-zinc-400"
           />
 
             
@@ -46,14 +47,18 @@ export default function PopoverMenu() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute -right-3 top-full z-10 mt-3 w-36 rounded-xl bg-sky-500  shadow-lg ring-1 ring-zinc-900/5 overflow-hidden">
+            <Popover.Panel className="absolute -right-3 top-full z-10 mt-4 w-44 rounded-sm bg-sky-500  shadow-lg ring-1 ring-zinc-900/5 overflow-hidden">
               {options.map((item) => (
                 <NavLink
                   key={item.name}
                   to={item.href}
                   className="block  px-6 py-3 text-sm font-semibold leading-6 hover:bg-sky-400 border-b border-zinc-900/30"
                 >
+
+                <span className="flex items-center gap-x-1">
+                  <item.icon className="h-5 w-5 text-zinc-100"/>
                   {item.name}
+                </span>
                 </NavLink>
               ))}
 
@@ -61,7 +66,11 @@ export default function PopoverMenu() {
                 onClick={logOut}
                 className="flex w-full  px-6 py-3 text-sm font-semibold leading-6 hover:bg-sky-400"
               >
-                Log Out<span aria-hidden="true">&rarr;</span>
+                <span className="flex items-center gap-x-1">
+                  <PowerIcon className="h-5 w-5 text-zinc-100"/>
+                  Log Out
+                </span>
+                
               </button>
             </Popover.Panel>
           </Transition>

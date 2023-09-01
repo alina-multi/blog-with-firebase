@@ -1,32 +1,36 @@
 import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-import Header from "./components/Header";
-import SignUp from "./pages/Auth/SignUp";
-import LogIn from "./pages/Auth/LogIn";
+import SideNav from "./components/SideNav";
+import SignUp from "./pages/auth/register";
+import LogIn from "./pages/auth/logIn";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/atoms/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./store/AuthContext";
 
-const Home = lazy(() => import("./pages/Home"));
-const Posts = lazy(() => import("./pages/Posts"));
-const About = lazy(() => import("./pages/About"));
-const EditProfile = lazy(() => import("./pages/EditProfile"));
-const Profile = lazy(() => import("./pages/Profile"));
-const AddPost = lazy(() => import("./pages/AddPost"));
+const Home = lazy(() => import("./pages/home"));
+const Posts = lazy(() => import("./pages/posts"));
+const About = lazy(() => import("./pages/about"));
+const EditProfile = lazy(() => import("./pages/editProfile"));
+const Profile = lazy(() => import("./pages/profile"));
+const AddPost = lazy(() => import("./pages/addPost"));
+const Post = lazy(() => import("./pages/post"));
+const HeaderTop = lazy(() => import("./components/HeaderTop"));
 
 function App() {
   const { currentUser } = useContext(AuthContext);
 
   return (
     <div className="flex gap-6 ">
-      <Header />
+      <SideNav />
+      <HeaderTop />
       <Suspense fallback={<Loading/>}>
         <Routes>
         <Route index element={<Home />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="posts" element={<Posts />} />
           <Route path="about" element={<About />} />
+          <Route path="post/:postId" element={<Post />} />
           <Route
             path="/signup"
             element={currentUser ? <Navigate replace to={`/`} /> : <SignUp />}

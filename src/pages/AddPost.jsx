@@ -5,6 +5,7 @@ import { addDoc, serverTimestamp } from "firebase/firestore";
 import { postsRef } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../store/AuthContext";
+import Layout from '../components/Layout';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -26,7 +27,7 @@ function PostForm() {
 
     });
   response && alert('Post added');
-  response && navigate('/'); 
+  response && navigate('/posts'); 
   };
 
 
@@ -38,9 +39,10 @@ function PostForm() {
   };
 
   return (
-    <>
-    <form action="POST"  onSubmit={handleSubmit} className='mx-auto w-1/2 mt-12'>
-    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required  className='text-lg w-full mb-6 block rounded-md border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 '/>
+    <Layout>
+      <main class="py-36 h-screen">
+    <form action="POST"  onSubmit={handleSubmit} className='mx-auto w-3/4 '>
+    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required  className='text-lg w-full mb-6 block rounded-sm border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 '/>
       <Tab.Group>
         {({ selectedIndex }) => (
           <>
@@ -51,7 +53,7 @@ function PostForm() {
                     selected
                       ? 'bg-zinc-800  hover:bg-zinc-700'
                       : ' hover:bg-zinc-700 ',
-                    'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
+                    'rounded-sm border border-transparent px-3 py-1.5 text-sm font-medium'
                   )
                 }
               >
@@ -63,7 +65,7 @@ function PostForm() {
                   selected
                     ? 'bg-zinc-800  hover:bg-zinc-700'
                     : ' hover:bg-zinc-700 ',
-                  'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
+                  'rounded-sm border border-transparent px-3 py-1.5 text-sm font-medium'
                 )
                 }
               >
@@ -113,11 +115,11 @@ function PostForm() {
                   <textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)} 
-                    rows={12}
+                    rows={16}
                     name="post"
                     id="post"
                     required
-                    className="block w-full text-lg rounded-md border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm lg:text-base sm:leading-6"
+                    className="block w-full text-lg rounded-sm border-0 py-1.5 bg-zinc-800  shadow-sm ring-1 ring-inset ring-zinc-700 placeholder:text-zinc-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm lg:text-base sm:leading-6"
                     placeholder="Add your post..."
                 
                   />
@@ -134,16 +136,17 @@ function PostForm() {
           </>
         )}
       </Tab.Group>
-      <div className="mt-2 flex justify-end">
+      <div className="mt-3 flex justify-end">
         <button
           type="submit"
-          className="inline-flex items-center rounded-md bg-sky-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          className="inline-flex items-center rounded-sm bg-sky-600 px-3 py-1 font-semibold text-zinc-100 shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
         >
-          Post
+          Publish
         </button>
       </div>
     </form>
-    </>
+    </main>
+    </Layout>
   )
 }
 

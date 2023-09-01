@@ -1,12 +1,13 @@
 
+import Layout from "../components/Layout";
 
 export default function  Profile() {
 
 
     return (
         
-        <>
-                 dddddd
-        </>
+        <Layout>
+               
+        </Layout>
     )
     }
