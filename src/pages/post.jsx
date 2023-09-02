@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useState, useContext } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import { AuthContext } from "../store/AuthContext";
 import { UserInline } from "../components/user/UserInline";
 import { Time } from "../components/atoms/Time";
 import Comments from "../components/comment/Comments";
-import CommentForm from "../components/comment/CommentForm";
 
 export default function PostPage() {
   const [post, setPost] = useState(null);
@@ -16,16 +15,10 @@ export default function PostPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMyPost, setIsMyPost] = useState(false);
   const { currentUser } = useContext(AuthContext);
-  const [isMy, setIsMy] = useState(false);
-  const [isNewComment, setIsNewComment] = useState(false);
-
-
 
   let { postId } = useParams();
 
   useEffect(() => {
-    console.log("post", isNewComment);
-   
     const fetchPost = async () => {
       setIsLoading(true);
       const docRef = doc(db, "posts", postId);
@@ -43,14 +36,11 @@ export default function PostPage() {
     };
 
     fetchPost();
-
-   
-
   }, [postId, currentUser?.uid, post?.authorID]);
   return (
     !isLoading && (
       <Layout>
-        <main className="pt-28 space-y-9">
+        <main className="pt-28 pb-6 space-y-9">
           <div className="space-y-9 px-16 ">
             <h1 className="text-3xl text-center">{post?.title}</h1>
             <p className=" text-lg  whitespace-break-spaces">
@@ -63,16 +53,7 @@ export default function PostPage() {
             <Time time={post?.createdAt} />
           </div>
 
-          <div className=" space-y-3">
-           
-              {currentUser &&  <div className="mx-16 pb-6"><CommentForm postId={post?.id} setIsNewComment={setIsNewComment}/> </div>}
-           
-            <p className="font-semibold text-lg mx-16 leading-4 ">
-              {" "}
-              Comments
-            </p>
-            <div  className="mx-16 space-y-6 border-x border-t  p-6 border-zinc-700 "> {post?.id && <Comments postId={post?.id}  isNewComment={isNewComment} setIsNewComment={setIsNewComment}/>}</div> 
-          </div>
+          <Comments postId={postId} />
         </main>
       </Layout>
     )

@@ -6,7 +6,7 @@ import { serverTimestamp } from "firebase/firestore";
 import Input from '../atoms/Input';
 
 
-function CommentForm({ postId, setIsNewComment }) {
+function CommentForm({ postId, setNewComment }) {
   const [text, setText] = useState('');
   const {currentUser} = useContext(AuthContext);
  
@@ -16,7 +16,7 @@ function CommentForm({ postId, setIsNewComment }) {
   const addComment = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(commentsRef, {
+    const docRef = await addDoc(commentsRef, {
         postId,
         text,
         authorID: currentUser.uid,
@@ -25,11 +25,12 @@ function CommentForm({ postId, setIsNewComment }) {
         
       });
       setText('');
-      setIsNewComment(true);
-      console.log("Comment added");
+      setNewComment(docRef.id);
+      console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error(error);
     }
+    
   };
 
   return (
