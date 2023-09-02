@@ -26,7 +26,6 @@ function CommentForm({ postId, setNewComment }) {
       });
       setText('');
       setNewComment(docRef.id);
-      console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error(error);
     }

@@ -8,6 +8,7 @@ export default function Commment({ comment, newComment, setNewComment }) {
   const { currentUser } = useContext(AuthContext);
   const [author, setAuthor] = useState(null);
   const [isMy, setIsMy] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const newCommentRef = useRef(null);
 
@@ -24,6 +25,7 @@ export default function Commment({ comment, newComment, setNewComment }) {
         behavior: "smooth",
         block: "center",
       });
+
       setTimeout(() => {
         setNewComment(null);
       }, 1000);
@@ -31,14 +33,20 @@ export default function Commment({ comment, newComment, setNewComment }) {
   }, [comment, currentUser?.uid, newComment, setNewComment]);
 
   const deleteComment = async (id) => {
-    const commentDoc = doc(db, "comments", id);
-    await deleteDoc(commentDoc);
+    setIsDeleting(true);
+
+    setTimeout(() => {
+      const commentDoc = doc(db, "comments", id);
+      deleteDoc(commentDoc);
+      setIsDeleting(false);
+    }, 750);
   };
   return (
     <div
       className={classNames(
         "flex gap-3 transition-opacity duration-500 ",
-        comment.id === newComment ? "opacity-50" : "opacity-100"
+        comment.id === newComment ? "opacity-50" : "opacity-100",
+        isDeleting && "opacity-50"
       )}
       ref={newCommentRef}
     >
@@ -55,7 +63,7 @@ export default function Commment({ comment, newComment, setNewComment }) {
               className="text-sm border-l border-zinc-700 pl-3 text-zinc-400 hover:text-red-500"
               onClick={() => deleteComment(comment.id)}
             >
-              Delete{" "}
+              Delete
             </button>
           )}
         </div>
