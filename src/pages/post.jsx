@@ -8,6 +8,7 @@ import { AuthContext } from "../store/AuthContext";
 import { UserInline } from "../components/user/UserInline";
 import { Time } from "../components/atoms/Time";
 import Comments from "../components/comment/Comments";
+import fetchPost from "../helpers/fetchPost";
 
 export default function PostPage() {
   const [post, setPost] = useState(null);
@@ -19,23 +20,32 @@ export default function PostPage() {
   let { postId } = useParams();
 
   useEffect(() => {
-    const fetchPost = async () => {
-      setIsLoading(true);
-      const docRef = doc(db, "posts", postId);
-      const docSnap = await getDoc(docRef);
+    setIsLoading(true);
+    fetchPost(postId).then((post) => {
+      setPost(post);
+      fetchUser(post?.authorID).then((user) => setAuthor(user));
+      setIsMyPost(post?.authorID === currentUser?.uid);
+      setIsLoading(false);
+    });
+  
+     
+    // const fetchPost = async () => {
+    //   setIsLoading(true);
+    //   const docRef = doc(db, "posts", postId);
+    //   const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        const post = docSnap.data();
-        setPost({ id: docSnap.id, ...post });
-        fetchUser(post?.authorID).then((user) => setAuthor(user));
-        setIsMyPost(post?.authorID === currentUser?.uid);
-        setIsLoading(false);
-      } else {
-        console.log("No such document!");
-      }
-    };
+    //   if (docSnap.exists()) {
+    //     const post = docSnap.data();
+    //     setPost({ id: docSnap.id, ...post });
+    //     fetchUser(post?.authorID).then((user) => setAuthor(user));
+    //     setIsMyPost(post?.authorID === currentUser?.uid);
+    //     setIsLoading(false);
+    //   } else {
+    //     console.log("No such document!");
+    //   }
+    
 
-    fetchPost();
+
   }, [postId, currentUser?.uid, post?.authorID]);
   return (
     !isLoading && (

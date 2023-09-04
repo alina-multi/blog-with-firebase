@@ -24,8 +24,9 @@ function CommentForm({ postId, setNewComment }) {
         photo: currentUser.photoURL,
         
       });
-      setText('');
       setNewComment(docRef.id);
+      setText('');
+     
     } catch (error) {
       console.error(error);
     }

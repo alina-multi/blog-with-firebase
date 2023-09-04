@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { CommandLineIcon, GlobeAsiaAustraliaIcon, HomeIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
+import { CommandLineIcon, GlobeAsiaAustraliaIcon, HomeIcon, EnvelopeIcon, AcademicCapIcon } from '@heroicons/react/20/solid';
 
 
 
@@ -7,13 +7,15 @@ import { CommandLineIcon, GlobeAsiaAustraliaIcon, HomeIcon, EnvelopeIcon } from 
 const navigation = [
   { name: "HOME", href: "/", icon: HomeIcon },
   { name: "ALL POSTS", href: "/posts", icon: GlobeAsiaAustraliaIcon },
+  { name: "AUTHORS", href: "/authors", icon: AcademicCapIcon },
   { name: "ABOUT", href: "/about", icon: CommandLineIcon },
-  {name: "CONTACT", href: "/contact", icon: EnvelopeIcon }
+  {name: "CONTACT", href: "/contact", icon: EnvelopeIcon },
+ 
 ];
 
 export default function SideNav() {
   return (
-    <header className="w-1/4 h-screen border-r border-zinc-700 p-6 fixed top-0 left-0 flex flex-col items-center justify-between">
+    <header className="w-1/4 h-screen border-r border-zinc-700 p-6 fixed top-0 left-0 flex flex-col items-center ">
       <NavLink to="/" className="mx-auto">
         <span className="sr-only">React Blog</span>
         <img
@@ -23,7 +25,7 @@ export default function SideNav() {
         />
       </NavLink>
       <nav
-        className="flex flex-col items-center justify-between "
+        className="flex flex-col items-center  mt-16 "
         aria-label="Global"
       >
         <div className="hidden lg:flex  flex-col  gap-8">
@@ -43,9 +45,9 @@ export default function SideNav() {
         </div>
       </nav>
 
-      <div className="h-1/3 flex items-end">
+      {/* <div className="h-1/3 flex items-end">
         <div className=""> Footer</div>
-      </div>
+      </div> */}
     </header>
   );
 }

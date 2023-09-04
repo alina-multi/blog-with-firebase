@@ -37,7 +37,7 @@ export default function Code() {
               </span>;
               <br />
             </div>
-            <span className="text-indigo-400 ">
+            <span className="text-sky-400 ">
               function Example
             </span>
             () {"{"}
@@ -49,7 +49,7 @@ export default function Code() {
 
             <br />
             {" "} return (<br />
-            {" "}    &lt;<span className="text-indigo-400">form</span>{" "}
+            {" "}    &lt;<span className="text-sky-400">form</span>{" "}
             action="/
             <span className="text-emerald-300">
               notification-settings
@@ -57,7 +57,7 @@ export default function Code() {
             " method="<span className="text-emerald-300">post</span>
             "&gt; <br />
             {"   "}   &lt;
-            <span className="text-indigo-400">Switch</span> <br />
+            <span className="text-sky-400">Switch</span> <br />
             {"        "}  checked=
             {<span className="text-[#7dd3fc]">enabled</span>} <br />
             onChange=
@@ -71,13 +71,13 @@ export default function Code() {
             <br />
             {<span className="text-zinc-500">{"/* ... */"} </span>}
             <br />
-            &lt;/<span className="text-indigo-400">Switch</span>&gt;
+            &lt;/<span className="text-sky-400">Switch</span>&gt;
             <br />
-            &lt;<span className="text-indigo-400">button</span>
+            &lt;<span className="text-sky-400">button</span>
             &gt;Submit&lt;/
-            <span className="text-indigo-400">button</span>&gt;
+            <span className="text-sky-400">button</span>&gt;
             <br /> &lt;/
-            <span v="text-indigo-400">form</span>&gt; ){"}"}
+            <span v="text-sky-400">form</span>&gt; ){"}"}
           </pre>
         </div>
       </div>
