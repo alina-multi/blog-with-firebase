@@ -5,7 +5,7 @@ import {postsRef} from "../firebase";
 import { onSnapshot, query, where, orderBy } from "firebase/firestore"
 import MyPost from "../components/post/MyPost";
 
-export default function Profile() {
+export default function UserProfile() {
   const { currentUser } = useContext(AuthContext);
 
 

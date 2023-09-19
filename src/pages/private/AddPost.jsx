@@ -6,11 +6,11 @@ import {
   LinkIcon,
 } from "@heroicons/react/20/solid";
 import { addDoc, serverTimestamp } from "firebase/firestore";
-import { postsRef } from "../firebase";
+import { postsRef } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../store/AuthContext";
-import Layout from "../components/Layout";
-import { updateProfileData } from "../utils/handleProfile";
+import { AuthContext } from "../../store/AuthContext";
+import Layout from "../../components/Layout";
+import { updateProfileData } from "../../utils/handleProfile";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

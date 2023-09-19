@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import Cropper from "../components/Cropper";
-import { updateProfileData, upload} from "../utils/handleProfile";
-import { AuthContext } from "../store/AuthContext";
-import Layout from "../components/Layout";
+import Cropper from "../../components/Cropper";
+import { updateProfileData, upload} from "../../utils/handleProfile";
+import { AuthContext } from "../../store/AuthContext";
+import Layout from "../../components/Layout";
 
 export default function EditProfile() {
   const { currentUser, dispatch } = useContext(AuthContext);

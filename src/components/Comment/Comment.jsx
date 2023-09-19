@@ -2,7 +2,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../store/AuthContext";
-import { fetchUser } from "../../utils/auth";
+import { fetchUser } from "../../helpers/fetchUser";
 
 export default function Commment({ comment, newComment, setNewComment }) {
   const { currentUser } = useContext(AuthContext);

@@ -1,9 +1,8 @@
 import Layout from "../components/Layout";
 import { useEffect, useState, useContext } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+
 import { useParams } from "react-router-dom";
-import { fetchUser } from "../utils/auth";
+import { fetchUser } from "../helpers/fetchUser";
 import { AuthContext } from "../store/AuthContext";
 import { UserInline } from "../components/user/UserInline";
 import { Time } from "../components/atoms/Time";
@@ -27,25 +26,6 @@ export default function PostPage() {
       setIsMyPost(post?.authorID === currentUser?.uid);
       setIsLoading(false);
     });
-  
-     
-    // const fetchPost = async () => {
-    //   setIsLoading(true);
-    //   const docRef = doc(db, "posts", postId);
-    //   const docSnap = await getDoc(docRef);
-
-    //   if (docSnap.exists()) {
-    //     const post = docSnap.data();
-    //     setPost({ id: docSnap.id, ...post });
-    //     fetchUser(post?.authorID).then((user) => setAuthor(user));
-    //     setIsMyPost(post?.authorID === currentUser?.uid);
-    //     setIsLoading(false);
-    //   } else {
-    //     console.log("No such document!");
-    //   }
-    
-
-
   }, [postId, currentUser?.uid, post?.authorID]);
   return (
     !isLoading && (

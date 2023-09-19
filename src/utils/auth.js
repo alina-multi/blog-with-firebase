@@ -6,22 +6,10 @@ import {
 import { findError } from "./authErrorCodes";
 import { auth, usersRef } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
+import { fetchUser } from "../helpers/fetchUser";
 
 import { getDoc } from "firebase/firestore";
 
-
-export const fetchUser = async (uid) => {
-  const docSnap = await getDoc(doc(usersRef, uid));
-  let user = {};
-
-  if (docSnap.exists()) {
-    user = docSnap.data();
-  } else {
-  
-  }
-
-  return user;
-};
 
 const creatUsersCollection = (user, username) => {
   const payload = {

@@ -9,17 +9,16 @@ import Loading from "./components/atoms/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./store/AuthContext";
 
-
-const Home = lazy(() => import("./pages/home"));
-const Posts = lazy(() => import("./pages/posts"));
-const About = lazy(() => import("./pages/about"));
-const EditProfile = lazy(() => import("./pages/editProfile"));
-const Profile = lazy(() => import("./pages/profile"));
-const AddPost = lazy(() => import("./pages/addPost"));
-const Post = lazy(() => import("./pages/post"));
-const Contact = lazy(() => import("./pages/contact"));
+const Home = lazy(() => import("./pages/Home"));
+const Posts = lazy(() => import("./pages/Posts"));
+const About = lazy(() => import("./pages/About"));
+const EditProfile = lazy(() => import("./pages/private/EditProfile"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const AddPost = lazy(() => import("./pages/private/AddPost"));
+const Post = lazy(() => import("./pages/Post"));
+const Contact = lazy(() => import("./pages/Contact"));
 const HeaderTop = lazy(() => import("./components/HeaderTop"));
-const Authors = lazy(() => import("./pages/authors"));
+const Users = lazy(() => import("./pages/Users"));
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -28,16 +27,14 @@ function App() {
     <div className="flex gap-6 ">
       <SideNav />
       <HeaderTop />
-      <Suspense fallback={<Loading/>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
-        <Route index path="/" exact element={<Home />} />
-          <Route path="posts" element={<Posts />} />
-          <Route path="authors" element={<Authors />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          
-
-          <Route path="post/:postId" element={<Post />} />
+          <Route index path="/" exact element={<Home />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/authors" element={<Users />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/post/:postId" element={<Post />} />
 
           <Route
             path="/signup"
@@ -59,7 +56,7 @@ function App() {
           <Route
             path="/profile"
             element={
-              <PrivateRoute component={<Profile />} redirectTo="/login" />
+              <PrivateRoute component={<UserProfile />} redirectTo="/login" />
             }
           />
           <Route

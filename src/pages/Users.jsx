@@ -63,7 +63,7 @@ import { NavLink } from "react-router-dom";
     },
   ];
   
-  export default function Authors() {
+  export default function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
