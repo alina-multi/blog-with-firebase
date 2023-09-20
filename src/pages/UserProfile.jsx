@@ -24,7 +24,7 @@ export default function UserProfile() {
           <div>
             <p className="text-2xl font-bold ">{currentUser.displayName}</p>
             <p className="truncate text-sm text-zinc-400"> {currentUser.email}</p>
-            <p className="truncate text- font-semibold "> Published posts:<span class="ml-2"> {currentUser.posts.length}</span> </p>
+            <p className="truncate text- font-semibold "> Published posts:<span className="ml-2"> {currentUser.posts.length}</span> </p>
           </div>
         </div>
 

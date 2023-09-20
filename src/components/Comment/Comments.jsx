@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { commentsRef } from "../../firebase";
 import Comment from "./Comment";
@@ -29,7 +29,7 @@ function Comments({ postId }) {
   }, [postId]);
 
   return (
-    <div className=" space-y-3">
+    <div className=" space-y-3 ">
       {currentUser && (
         <div className="mx-16 pb-6">
           <CommentForm postId={postId} setNewComment={setNewComment} />

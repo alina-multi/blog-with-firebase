@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import Cropper from "../../components/Cropper";
-import { updateProfileData, upload} from "../../utils/handleProfile";
+import { updateProfileData, upload } from "../../utils/handleProfile";
 import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";
+import Input from "../../components/atoms/Input";
+import Shadow from "../../components/atoms/Shadow";
 
 export default function EditProfile() {
   const { currentUser, dispatch } = useContext(AuthContext);
@@ -10,59 +12,46 @@ export default function EditProfile() {
   const [photoURL, setPhotoURL] = useState(null);
   const [username, setUsername] = useState(currentUser.displayName);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let url = currentUser.photoURL;
-   if (photoURL) {
-     url = await upload(photoURL, currentUser)
-   }
-   
-    updateProfileData({ displayName: username, photoURL:url}, dispatch);
+    if (photoURL) {
+      url = await upload(photoURL, currentUser);
+    }
+
+    updateProfileData({ displayName: username, photoURL: url }, dispatch);
   };
 
   return (
     <Layout>
+      <Shadow />
       <form className="w-3/4 mx-auto mt-20 pt-12" onSubmit={handleSubmit}>
         <div className="space-y-3">
-          <h2 className="text-base font-semibold leading-7 text-zinc-100">
+          <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-zinc-100">
             Personal Information
           </h2>
-          <p className="mt-1 text-sm leading-6 text-zinc-400">
+          <p className="mt-1 text-center text-sm leading-6 text-zinc-400">
             This information will be displayed publicly so be careful what you
             share.
           </p>
-
-          <Cropper
-            preview={preview}
-            setPreview={setPreview}
-            setPhotoURL={setPhotoURL}
-          />
-
-          <div className="sm:col-span-4">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium leading-6 text-zinc-100"
-            >
-              Username
-            </label>
-            <div className="mt-2">
-              <div className="flex rounded-sm bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-500">
-                <span className="flex select-none items-center pl-3  sm:text-sm">
-                  @
-                </span>
-                <input
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                  type="text"
-                  name="username"
-                  id="username"
-                  autoComplete="username"
-                  className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-zinc-100 focus:ring-0 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+          <div className="flex justify-center">
+            <Cropper
+              preview={preview}
+              setPreview={setPreview}
+              setPhotoURL={setPhotoURL}
+            />
           </div>
+
+          <Input
+            props={{
+              label: "Username",
+              setValue: setUsername,
+              value: username,
+              type: "text",
+              name: "username",
+              id: "username",
+            }}
+          />
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">

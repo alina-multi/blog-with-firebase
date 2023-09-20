@@ -33,7 +33,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
         setPreview={setPreview}
         setPhotoURL={setPhotoURL}
       />
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center pt-6">
         <div className="border  rounded-full ">
           <img
             src={
@@ -41,7 +41,7 @@ export default function Cropper({ preview, setPreview, setPhotoURL}) {
               " https://www.signivis.com/img/custom/avatars/member-avatar-01.png"
             }
             alt=""
-            className="w-32 rounded-full object-cover"
+            className="w-28 rounded-full object-cover"
           />
         </div>
         <button

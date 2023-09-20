@@ -30,7 +30,8 @@ export default function PostPage() {
   return (
     !isLoading && (
       <Layout>
-        <main className="pt-28 pb-6 space-y-9">
+     
+        <main className="pt-12 pb-6 space-y-9">
           <div className="space-y-9 px-16 ">
             <h1 className="text-3xl text-center">{post?.title}</h1>
             <p className=" text-lg  whitespace-break-spaces">

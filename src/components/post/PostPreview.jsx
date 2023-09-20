@@ -58,19 +58,19 @@ function Post({ post }) {
               )}
             </div>
           </div>
-          <Time time={post?.createdAt} />
         </div>
 
         <NavLink
           to={`/post/${post.id}`}
-          className="flex flex-col gap-3 hover:text-zinc-300"
+          className="flex flex-col gap-3 hover:text-zinc-400"
         >
           <h3 className="text-xl font-semibold leading-6 ">{post.title}</h3>
           <p className=" line-clamp-3 leading-6 ">{post.description}</p>
         </NavLink>
 
-        <div className="flex justify-end items-center text-zinc-300">
-          <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center text-zinc-300">
+        <Time time={post?.createdAt} />
+          <div className="flex items-center gap-3 pr-3">
             <button onClick={handleShowInput}>
               <ChatBubbleBottomCenterTextIcon
                 className="h-6 w-6 "
@@ -81,14 +81,6 @@ function Post({ post }) {
           </div>
         </div>
       </div>
-
-      {/* <Comments postId={post.id} />
-
-      {isOpen && (
-        <div className="">
-          <CommentForm postId={post.id} />
-        </div>
-      )} */}
     </div>
   );
 }

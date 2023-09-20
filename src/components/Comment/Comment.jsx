@@ -3,6 +3,7 @@ import { db } from "../../firebase";
 import { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import { fetchUser } from "../../helpers/fetchUser";
+import { classNames } from "../../helpers/classNames";
 
 export default function Commment({ comment, newComment, setNewComment }) {
   const { currentUser } = useContext(AuthContext);
@@ -11,10 +12,6 @@ export default function Commment({ comment, newComment, setNewComment }) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const newCommentRef = useRef(null);
-
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(" ");
-  }
 
   useEffect(() => {
     fetchUser(comment.authorID).then((user) => setAuthor(user));

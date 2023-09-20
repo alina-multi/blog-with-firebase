@@ -1,34 +1,34 @@
 import Code from "../components/atoms/Code";
 import Layout from "../components/Layout";
-import Container from "../components/Layout";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
     <>
-      <Layout>
-        <div className="relative isolate overflow-hidden bg-gradient-to-b from-zinc-800 lg:h-screen  ">
-          <div className="mx-auto max-w-7xl pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-40 ">
-            <div className="px-6 lg:py-3 ">
+  
+ 
+  
+        <div className="relative isolate overflow-hidden bg-gradient-to-b from-zinc-800   lg:h-screen lg:w-3/4 w-full lg:ml-auto  ">
+          <div className="mx-auto max-w-7xl  lg:grid lg:grid-cols-2 lg:gap-x-8 pt-32 lg:pt-40  lg:px-8 overflow-hidden">
+            <div className="max-lg:px-6">
               <div className="mx-auto max-w-2xl">
-                <div className="max-w-lg">
+                <div className="max-w-lg leading-8 text-zinc-300 text-lg">
                   <h1 className="text-4xl  tracking-tight text-zinc-200 sm:text-4xl">
                     Unleash your Reactivity
                   </h1>
-                  <p className="mt-6 text-lg leading-8 text-zinc-300">
-                    Read posts from the community and share your own ideas. To
-                    get started, you’ll need to
-                    <a href="/" className="text-sky-500 font-bold">
-                      sign in
-                    </a>{" "}
-                    to your account. Or
-                    <a href="/" className="text-sky-500 font-bold">
-                      sign up
-                    </a>{" "}
-                    if you don’t have an account yet. You can also
-                    <a href="/" className="text-sky-500 font-bold">
-                      view posts
-                    </a>{" "}
-                    without signing in.
+                  <p className="mt-6"> Hello! I'm glad to see you here! </p>
+                  <p className="mt-3 ">Read posts and share your own ideas.</p>
+                  <p>
+                    {" "}
+                    To get started I suggest you{" "}
+                    <NavLink to="/signup" className="text-sky-500 font-bold">
+                      register
+                    </NavLink>{" "}
+                    . It's quick - just a couple of moments, you just need to
+                    come up with a name, email and password.
+                  </p>
+                  <p>
+                    You can also view the site without logging in or view the code on GitРub.
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a
@@ -59,9 +59,9 @@ export default function Home() {
               <Code />
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-zinc-800 sm:h-32" />
+          <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-zinc-800 sm:h-32 " />
         </div>
-      </Layout>
+       
     </>
   );
 }

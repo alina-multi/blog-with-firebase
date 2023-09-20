@@ -1,5 +1,4 @@
 import Post from "./PostPreview";
-import { useState } from "react";
 
 function Posts({ posts }) {
   return (
@@ -12,7 +11,7 @@ function Posts({ posts }) {
           >
             <Post post={post} />
           </li>
-        ))}{" "}
+        ))}
       </ul>
     </>
   );

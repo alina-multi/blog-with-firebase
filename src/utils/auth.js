@@ -8,26 +8,6 @@ import { auth, usersRef } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { fetchUser } from "../helpers/fetchUser";
 
-import { getDoc } from "firebase/firestore";
-
-
-const creatUsersCollection = (user, username) => {
-  const payload = {
-    uid: user.uid,
-    displayName: username,
-    email: user.email,
-    photoURL: user.photoURL,
-    createdAt: user.metadata.creationTime,
-    firstName: "",
-    lastName: "",
-    posts: [],
-  };
-
-  setDoc(doc(usersRef, user.uid), payload);
-
-  return payload;
-};
-
 export const login = async (email, password, setError, dispatch) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -67,4 +47,21 @@ export const logout = async (dispatch) => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+const creatUsersCollection = (user, username) => {
+  const payload = {
+    uid: user.uid,
+    displayName: username,
+    email: user.email,
+    photoURL: user.photoURL,
+    createdAt: user.metadata.creationTime,
+    firstName: "",
+    lastName: "",
+    posts: [],
+  };
+
+  setDoc(doc(usersRef, user.uid), payload);
+
+  return payload;
 };

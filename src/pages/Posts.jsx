@@ -5,7 +5,6 @@ import { postsRef } from "../firebase";
 import Loading from "../components/atoms/Loading";
 import Layout from "../components/Layout";
 
-
 const tags = [
   { id: 1, name: "hooks" },
   { id: 2, name: "react" },
@@ -35,23 +34,19 @@ export default function Home() {
     <Loading />
   ) : (
     <Layout>
-      
-      <div className="fixed h-20 top-0 right-0 z-30 flex flex-wrap items-center w-3/4 gap-6 px-6">
+      <div className="fixed h-20 top-0 right-0 z-30 hidden md:flex flex-wrap items-center w-full lg:w-3/4 gap-6 lg:px-6 pl-24 ">
         {tags.map((tag) => (
           <button
-
             key={tag.id}
-            className=" cursor-pointer hover:text-zinc-100 hover:border-zinc-100  font-bold py-2 text-sm px-4 rounded-sm border overflow-hidden border-zinc-400 leading-3 bg-zinc-800 text-zinc-400"
+            className=" cursor-pointer hover:text-zinc-100 hover:border-zinc-100  font-bold py-2.5 px-4 rounded-sm border overflow-hidden border-zinc-500 leading-3 bg-zinc-800 text-zinc-200"
           >
             {tag.name}
           </button>
         ))}
       </div>
-      <main className="mt-20">
-      <Posts posts={posts} />
+      <main className="">
+        <Posts posts={posts} />
       </main>
-      
     </Layout>
-  
   );
 }
