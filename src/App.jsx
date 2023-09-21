@@ -31,10 +31,14 @@ function App() {
         <Routes>
           <Route index path="/" exact element={<Home />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/post/:postId" element={<Post />} />
           <Route path="/authors" element={<Users />} />
+          <Route path="/profile/:profileId" element={<UserProfile />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/post/:postId" element={<Post />} />
+          
+         
+
 
           <Route
             path="/signup"
@@ -53,12 +57,12 @@ function App() {
               <PrivateRoute component={<EditProfile />} redirectTo="/login" />
             }
           />
-          <Route
+          {/* <Route
             path="/profile"
             element={
               <PrivateRoute component={<UserProfile />} redirectTo="/login" />
             }
-          />
+          /> */}
           <Route
             path="/addpost"
             element={

@@ -8,11 +8,12 @@ import { BookmarkButton } from "../atoms/BoormarkButton";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { fetchUser } from "../../helpers/fetchUser";
 import { NavLink } from "react-router-dom";
+import { updateProfileData } from "../../utils/handleProfile";
 
 import { HashLink as Link } from 'react-router-hash-link';
 
 function Post({ post }) {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, dispatch } = useContext(AuthContext);
   const [author, setAuthor] = useState(null);
   const [isMyPost, setIsMyPost] = useState(false);
 
@@ -24,9 +25,11 @@ function Post({ post }) {
 
   const deletePost = async (id) => {
     const response = await deleteDoc(doc(postsRef, id));
+    const posts = currentUser.posts.filter((postId)=> postId !== id)
+    console.log(posts)
+    updateProfileData({posts:[...posts] }, dispatch);
     response && alert("Post deleted");
   };
-
   return (
     <div className="w-full space-y-6 py-6 px-9 0">
       <div className="w-full flex flex-col gap-3 ">

@@ -36,9 +36,9 @@ function CommentForm({ postId, setNewComment }) {
         className="h-16 w-16 rounded-full bg-zinc-400 overflow-hidden shrink-0"
       >
         <img
-          src={currentUser?.photoURL}
+           src={currentUser?.photoURL || "https://media.tenor.com/O7iUTKsWo4gAAAAC/space-cat.gif"}
           alt=""
-          className="h-16 w-16 rounded-full "
+          className="h-16 w-16 rounded-full object-cover"
         />
       </a>
       <form

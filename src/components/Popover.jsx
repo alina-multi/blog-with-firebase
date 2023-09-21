@@ -7,14 +7,15 @@ import { AuthContext } from "../store/AuthContext";
 import {PencilSquareIcon, HomeModernIcon, PowerIcon} from '@heroicons/react/20/solid';
 
 
-const options = [
-  { name: "My Profile", href: "/profile", icon: HomeModernIcon },
-  { name: "Edit Profile", href: "/editprofile", icon: PencilSquareIcon },
-];
+
 
 export default function PopoverMenu() {
   const navigate = useNavigate();
   const { currentUser,dispatch} = useContext(AuthContext);
+  const options = [
+    { name: "My Profile", href: `/profile/${currentUser.uid}`, icon: HomeModernIcon },
+    { name: "Edit Profile", href: "/editprofile", icon: PencilSquareIcon },
+  ];
 
 
   const logOut = async () => {
@@ -28,11 +29,11 @@ export default function PopoverMenu() {
         <>
           <Popover.Button className="flex items-center gap-x-6  font-semibold leading-6 text-zinc-100 ring-0">
             <span className="sr-only">Open user menu</span>
-            <span > {currentUser?.firstName || "Wizard"}</span>
+            <span > {currentUser?.displayName || "Wizard"}</span>
             <img
-            src={currentUser?.photoURL || "https://i.pravatar.cc/300"}
+            src={currentUser?.photoURL || "https://media.tenor.com/O7iUTKsWo4gAAAAC/space-cat.gif"}
             alt=""
-            className="h-12 w-12 rounded-full bg-zinc-400"
+            className="h-12 w-12 rounded-full bg-zinc-400 object-cover"
           />
 
             

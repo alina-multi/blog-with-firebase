@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import fetchPost from "../../helpers/fetchPost";
+import { Time } from "../atoms/Time";
 
 export default function MyPost({ postId }) {
   const [post, setPost] = useState([]);
@@ -20,7 +21,7 @@ console.log(post);
         <p className="truncate text-sm text-zinc-400"> {post?.description}</p>
         <p className="truncate text-lg font-semibold mt-3">
           {" "}
-          Published posts:<span className="ml-2"> {post?.date}</span>{" "}
+          Published posts: <Time time={post?.createdAt} />
         </p>
       </div>
     </div>
