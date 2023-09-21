@@ -9,7 +9,7 @@ function TextArea({
   label,
 }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 w-full">
       {label && (
         <label
           htmlFor={id}

@@ -9,18 +9,13 @@ import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { fetchUser } from "../../helpers/fetchUser";
 import { NavLink } from "react-router-dom";
 
+import { HashLink as Link } from 'react-router-hash-link';
+
 function Post({ post }) {
   const { currentUser } = useContext(AuthContext);
-
   const [author, setAuthor] = useState(null);
   const [isMyPost, setIsMyPost] = useState(false);
 
-  const handleShowInput = () => {
-    if (!currentUser) {
-      alert("You must be logged in to comment");
-      return;
-    }
-  };
 
   useEffect(() => {
     fetchUser(post.authorID).then((user) => setAuthor(user));
@@ -71,12 +66,11 @@ function Post({ post }) {
         <div className="flex justify-between items-center text-zinc-300">
         <Time time={post?.createdAt} />
           <div className="flex items-center gap-3 pr-3">
-            <button onClick={handleShowInput}>
-              <ChatBubbleBottomCenterTextIcon
+          <Link to={`/post/${post.id}#addComment`}> <ChatBubbleBottomCenterTextIcon
                 className="h-6 w-6 "
                 aria-hidden="true"
-              />
-            </button>
+              /></Link>
+       
             <BookmarkButton isMyPost={isMyPost} />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { commentsRef } from "../../firebase";
 import Comment from "./Comment";
@@ -11,7 +11,19 @@ function Comments({ postId }) {
   const { currentUser } = useContext(AuthContext);
   const [newComment, setNewComment] = useState(null);
 
+  const addCommentRef = useRef(null);
+
   useEffect(() => {
+  
+    const { hash } = window.location;
+
+    if (hash === "#addComment") {
+      addCommentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+
     const q = query(
       commentsRef,
       where("postId", "==", postId),
@@ -29,7 +41,7 @@ function Comments({ postId }) {
   }, [postId]);
 
   return (
-    <div className=" space-y-3 ">
+    <div className=" space-y-3 " ref={addCommentRef}>
       {currentUser && (
         <div className="mx-16 pb-6">
           <CommentForm postId={postId} setNewComment={setNewComment} />
