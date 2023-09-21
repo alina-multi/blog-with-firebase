@@ -13,7 +13,7 @@ import Layout from "../../components/Layout";
 import { updateProfileData } from "../../utils/handleProfile";
 import { classNames } from "../../helpers/classNames";
 import TextArea from "../../components/form/TextArea";
-import Input from "../../components/atoms/Input";
+import Input from "../../components/form/Input";
 import Shadow from "../../components/atoms/Shadow";
 import Form from "../../components/form/Form";
 

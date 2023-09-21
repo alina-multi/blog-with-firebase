@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { register } from "../../utils/auth";
-import Input from "../../components/atoms/Input";
+import Input from "../../components/form/Input";
 import { useContext } from "react";
 import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";

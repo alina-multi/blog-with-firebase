@@ -3,7 +3,7 @@ import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Shadow from "../components/atoms/Shadow";
 import { useState } from "react";
 import Form from "../components/form/Form";
-import Input from "../components/atoms/Input";
+import Input from "../components/form/Input";
 import TextArea from "../components/form/TextArea";
 
 export default function Contact() {

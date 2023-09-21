@@ -3,7 +3,7 @@ import Cropper from "../../components/Cropper";
 import { updateProfileData, upload } from "../../utils/handleProfile";
 import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";
-import Input from "../../components/atoms/Input";
+import Input from "../../components/form/Input";
 import Shadow from "../../components/atoms/Shadow";
 
 export default function EditProfile() {
