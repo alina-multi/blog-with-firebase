@@ -1,20 +1,28 @@
 import Layout from "../components/Layout";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import Shadow from "../components/atoms/Shadow";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Form from "../components/form/Form";
 import Input from "../components/form/Input";
 import TextArea from "../components/form/TextArea";
+
+import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
+
+const SERVICE_ID = "service_hixy8q4";
+const TEMPLATE_ID = "template_g5sk2pw";
+const PUBLIC_KEY = "IbqKMmNAfrG8I0Qa-";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  const refForm = useRef();
   const options = [
     {
-      id: "name",
-      name: "name",
+      id: "user_name",
+      name: "user_name",
       type: "text",
       label: "Name",
       value: name,
@@ -24,8 +32,8 @@ export default function Contact() {
     },
 
     {
-      id: "email",
-      name: "email",
+      id: "user_email",
+      name: "user_email",
       type: "email",
       label: "Email address",
       value: email,
@@ -36,12 +44,26 @@ export default function Contact() {
   ];
 
   const submit = (e) => {
+    console.log(refForm);
     e.preventDefault();
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, refForm.current, PUBLIC_KEY).then(
+      (result) => {
+        toast.success(`Thanks ${name}! Your message has been sent`, {
+          duration: 3000,
+          position: "top-center",
+        });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   return (
     <Layout>
       <Shadow />
+
       <div className=" grid grid-cols-1 lg:grid-cols-2  px-9    lg:pt-32 gap-16">
         <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
           <h2 className="text-3xl font-bold tracking-tight text-white pt-6">
@@ -86,16 +108,25 @@ export default function Contact() {
             </div>
           </dl>
         </div>
-
-        <Form submit={submit} buttonName={"Send message"} buttonWidth="">
+        <Form
+          submit={submit}
+          buttonName={"Send message"}
+          buttonWidth=""
+          ref={refForm}
+        >
           {options.map((option) => (
             <Input props={option} key={option.id} />
           ))}
 
-          <TextArea label="Message"  value={message}  setValue={setMessage} name="message"
-                id="message"
-                rows={4}  required={true}/>
-          
+          <TextArea
+            label="Message"
+            value={message}
+            setValue={setMessage}
+            name="message"
+            id="message"
+            rows={4}
+            required={true}
+          />
         </Form>
       </div>
     </Layout>

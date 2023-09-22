@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Posts from "../components/post/PostsList";
+import Posts from "../components/post/PostList";
 import { onSnapshot, query, orderBy } from "firebase/firestore";
 import { postsRef } from "../firebase";
 import Loading from "../components/atoms/Loading";

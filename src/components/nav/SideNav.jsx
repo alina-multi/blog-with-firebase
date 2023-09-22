@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   CommandLineIcon,
   GlobeAsiaAustraliaIcon,
@@ -6,6 +6,7 @@ import {
   EnvelopeIcon,
   AcademicCapIcon,
 } from "@heroicons/react/20/solid";
+import { classNames } from "../../helpers/classNames";
 
 const navigation = [
   { name: "HOME", href: "/", icon: HomeIcon },
@@ -16,12 +17,18 @@ const navigation = [
 ];
 
 export default function SideNav() {
+  const location = useLocation();
+
+const { pathname } = location;
+const path = pathname.split("/")[1];
+
+console.log(path)
   return (
     <header className="hidden lg:flex w-1/4 h-screen border-r border-zinc-700 p-6 fixed top-0 left-0  flex-col items-center ">
       <NavLink to="/" className="mx-auto">
         <span className="sr-only">React Blog</span>
         <img
-          src={require("../images/react.png")}
+          src={require("../../images/react.png")}
           alt="hero"
           className="w-3/5 mx-auto"
         />
@@ -32,10 +39,12 @@ export default function SideNav() {
             <NavLink
               key={item.name}
               to={item.href}
-              className=" font-semibold leading-6 text-zinc-100 text-lg"
+              className={classNames(`/${path}` === item.href ? "text-sky-300 ": " text-zinc-100", "font-semibold leading-6  text-lg ")}
+           
             >
               <span className="flex gap-3">
-                <item.icon className="h-6 w-6 text-zinc-100" />
+             
+                <item.icon className={classNames(`/${path}` === item.href ? "text-sky-300 ": " text-zinc-100", "h-6 w-6 ")}/>
                 {item.name}
               </span>
             </NavLink>

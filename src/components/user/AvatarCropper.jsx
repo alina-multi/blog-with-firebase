@@ -1,5 +1,5 @@
 import { useState, useRef} from "react";
-import CropperModal from "./CropperModal";
+import CropperModal from "./AvatarCropperModal";
 
 
 

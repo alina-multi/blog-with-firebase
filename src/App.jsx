@@ -1,13 +1,14 @@
 import React, { Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { lazy } from "react";
-import SideNav from "./components/SideNav";
+import SideNav from "./components/nav/SideNav";
 import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/atoms/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./store/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const Home = lazy(() => import("./pages/Home"));
 const Posts = lazy(() => import("./pages/Posts"));
@@ -17,7 +18,7 @@ const UserProfile = lazy(() => import("./pages/UserProfile"));
 const AddPost = lazy(() => import("./pages/private/AddPost"));
 const Post = lazy(() => import("./pages/Post"));
 const Contact = lazy(() => import("./pages/Contact"));
-const HeaderTop = lazy(() => import("./components/HeaderTop"));
+const HeaderTop = lazy(() => import("./components/nav/HeaderTop"));
 const Users = lazy(() => import("./pages/Users"));
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <div className="flex gap-6 ">
+      <Toaster />
       <SideNav />
       <HeaderTop />
       <Suspense fallback={<Loading />}>
@@ -36,19 +38,18 @@ function App() {
           <Route path="/profile/:profileId" element={<UserProfile />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          
-         
-
 
           <Route
             path="/signup"
-            element={currentUser ? <Navigate replace to={`/`} /> : <SignUp />}
+            element={
+              currentUser ? <Navigate replace to={`/posts`} /> : <SignUp />
+            }
           />
 
           <Route
             path="/login"
             element={
-              currentUser ? <Navigate replace to={`/editprofile`} /> : <LogIn />
+              currentUser ? <Navigate replace to={`/posts`} /> : <LogIn />
             }
           />
           <Route
@@ -57,12 +58,6 @@ function App() {
               <PrivateRoute component={<EditProfile />} redirectTo="/login" />
             }
           />
-          {/* <Route
-            path="/profile"
-            element={
-              <PrivateRoute component={<UserProfile />} redirectTo="/login" />
-            }
-          /> */}
           <Route
             path="/addpost"
             element={

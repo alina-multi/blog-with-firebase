@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
-import Cropper from "../../components/Cropper";
+import Cropper from "../../components/user/AvatarCropper";
 import { updateProfileData, upload } from "../../utils/handleProfile";
 import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";
 import Input from "../../components/form/Input";
 import Shadow from "../../components/atoms/Shadow";
+import { toast } from "react-hot-toast";
 
 export default function EditProfile() {
   const { currentUser, dispatch } = useContext(AuthContext);
@@ -19,7 +20,9 @@ export default function EditProfile() {
       url = await upload(photoURL, currentUser);
     }
 
-    updateProfileData({ displayName: username, photoURL: url }, dispatch);
+   const res =  updateProfileData({ displayName: username, photoURL: url }, dispatch);
+   res && toast.success("Profile Updated");
+
   };
 
   return (

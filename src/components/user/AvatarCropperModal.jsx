@@ -37,7 +37,7 @@ export default function CropperModal({
     <Transition.Root show={modalOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-10"
+        className="relative z-50"
         initialFocus={cancelButtonRef}
         onClose={setModalOpen}
       >
@@ -64,7 +64,7 @@ export default function CropperModal({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-zinc-900 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <AvatarEditor
@@ -94,7 +94,7 @@ export default function CropperModal({
                         className="transparent accent-sky-500 h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
                         id="zoom"
                       />
-                      <span className="bg-red-500"> {slideValue}</span>
+                    
                     </div>
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function CropperModal({
                   </button>
                   <button
                     type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-sm bg-white px-3 py-2 text-sm font-semibold text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 sm:col-start-1 sm:mt-0"
+                    className="mt-3 inline-flex w-full justify-center rounded-sm bg-zinc-500 text-white px-3 py-2 text-sm font-semibold hadow-sm ring-1 ring-inset ring-zinc-800 hover:bg-zinc-50 sm:col-start-1 sm:mt-0"
                     onClick={handleCancel}
                   >
                     Cancel

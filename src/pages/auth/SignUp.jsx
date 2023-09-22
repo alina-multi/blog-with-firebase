@@ -6,7 +6,7 @@ import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";
 import Form from "../../components/form/Form";
 import Shadow from "../../components/atoms/Shadow";
-import LayoutForm from "../../components/LayoutForm";
+import LayoutForm from "../../components/form/LayoutForm";
 
 function SignUp() {
   const [email, setEmail] = useState("");

@@ -1,11 +1,13 @@
 import { classNames } from "../../helpers/classNames";
+import { forwardRef } from 'react';
 
-function Form({ isError = "", submit, buttonName, buttonWidth = "w-full mt-3", children }) {
+const Form =  forwardRef(({ isError = "", submit, buttonName, buttonWidth = "w-full mt-3",  children }, ref = null,) => {
 
   
   return (
     
     <form
+    ref={ref}
       className="space-y-6 relative"
       method="POST"
       onSubmit={submit}
@@ -27,6 +29,6 @@ function Form({ isError = "", submit, buttonName, buttonWidth = "w-full mt-3", c
      
     </form>
   );
-}
+})
 
 export default Form;

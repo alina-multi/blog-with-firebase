@@ -16,6 +16,7 @@ import TextArea from "../../components/form/TextArea";
 import Input from "../../components/form/Input";
 import Shadow from "../../components/atoms/Shadow";
 import Form from "../../components/form/Form";
+import { toast } from "react-hot-toast";
 
 function PostForm() {
   const [title, setTitle] = useState("");
@@ -37,7 +38,7 @@ function PostForm() {
       createdAt: serverTimestamp(),
       authorID: currentUser.uid,
     });
-    response && alert("Post added");
+    response && toast.success('Post added');
     response && navigate("/posts");
 
     updateProfileData({ posts: [...currentUser.posts, response.id] }, dispatch);

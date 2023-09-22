@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AuthContext } from "../store/AuthContext";
+import { AuthContext } from "../../store/AuthContext";
 import { NavLink } from "react-router-dom";
-import PopoverMenu from "../components/Popover";
+import PopoverMenu from "./UserPopover";
 
 export default function AuthButtons() {
   const { currentUser } = useContext(AuthContext);

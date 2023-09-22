@@ -2,8 +2,8 @@ import { Fragment, useContext,  } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../utils/auth";
-import { AuthContext } from "../store/AuthContext";
+import { logout } from "../../utils/auth";
+import { AuthContext } from "../../store/AuthContext";
 import {PencilSquareIcon, HomeModernIcon, PowerIcon} from '@heroicons/react/20/solid';
 
 
