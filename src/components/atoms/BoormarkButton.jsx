@@ -1,13 +1,14 @@
 import { BookmarkIcon, BookmarkSlashIcon } from "@heroicons/react/24/outline";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/AuthContext";
+import { toast } from "react-hot-toast";
 
 export function BookmarkButton({ isMyPost }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const onBookmarkButton = () => {
     if (!currentUser) {
-      alert("You must be logged in to bookmark");
+      toast("You must be logged in to bookmark");
       return;
     }
     setIsBookmarked((prev) => !prev);

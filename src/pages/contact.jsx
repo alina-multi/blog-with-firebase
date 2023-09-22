@@ -44,7 +44,6 @@ export default function Contact() {
   ];
 
   const submit = (e) => {
-    console.log(refForm);
     e.preventDefault();
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, refForm.current, PUBLIC_KEY).then(

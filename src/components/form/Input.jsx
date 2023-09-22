@@ -1,6 +1,6 @@
 const Input = ({ props }) => {
   const {
-    label ,
+    label,
     value,
     setValue,
     id,
@@ -10,7 +10,7 @@ const Input = ({ props }) => {
     type,
     placeholder,
   } = props;
-  
+
   return (
     <div className="space-y-3">
       {label && (

@@ -1,6 +1,5 @@
 import Layout from "../components/Layout";
 import { useEffect, useState, useContext } from "react";
-
 import { useParams } from "react-router-dom";
 import { fetchUser } from "../helpers/fetchUser";
 import { AuthContext } from "../store/AuthContext";
@@ -8,6 +7,8 @@ import { UserInline } from "../components/user/UserInline";
 import { Time } from "../components/atoms/Time";
 import Comments from "../components/comment/Comments";
 import fetchPost from "../helpers/fetchPost";
+import EditPostButton from "../components/post/EditPostButton";
+
 
 export default function PostPage() {
   const [post, setPost] = useState(null);
@@ -25,15 +26,20 @@ export default function PostPage() {
       fetchUser(post?.authorID).then((user) => setAuthor(user));
       setIsMyPost(post?.authorID === currentUser?.uid);
       setIsLoading(false);
+
     });
   }, [postId, currentUser?.uid, post?.authorID]);
   return (
     !isLoading && (
       <Layout>
-     
         <main className="pt-12 pb-6 space-y-9">
           <div className="space-y-9 px-16 ">
-            <h1 className="text-3xl text-center">{post?.title}</h1>
+            <div className="flex justify-between items-center">
+             
+              <h1 className="text-3xl text-center">{post?.title}</h1>
+              {isMyPost && <EditPostButton postId={post.id}/>}
+              
+            </div>
             <p className=" text-lg  whitespace-break-spaces">
               {post?.description}
             </p>

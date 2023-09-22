@@ -18,13 +18,13 @@ export async function updateProfileData(payload, dispatch) {
       payload,
     });
 
-    return res;
+  return res;
 }
 
 export async function upload(file, currentUser) {
   const fileRef = ref(storage, "avatar/" + currentUser.uid + ".jpg");
- await uploadBytes(fileRef, file);
- let url = await getDownloadURL(fileRef);
+  await uploadBytes(fileRef, file);
+  let url = await getDownloadURL(fileRef);
 
   return url;
 }

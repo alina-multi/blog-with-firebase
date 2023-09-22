@@ -1,21 +1,16 @@
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
 import CropperModal from "./AvatarCropperModal";
 
-
-
-export default function Cropper({ preview, setPreview, setPhotoURL}) {
-  
+export default function Cropper({ preview, setPreview, setPhotoURL }) {
   const [src, setSrc] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const inputRef = useRef();
- 
-
 
   const handleImgChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-  
+
     setSrc(URL.createObjectURL(file));
     setModalOpen(true);
   };

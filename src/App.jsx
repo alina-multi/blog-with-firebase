@@ -21,6 +21,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const HeaderTop = lazy(() => import("./components/nav/HeaderTop"));
 const Users = lazy(() => import("./pages/Users"));
 
+
 function App() {
   const { currentUser } = useContext(AuthContext);
 
@@ -60,6 +61,12 @@ function App() {
           />
           <Route
             path="/addpost"
+            element={
+              <PrivateRoute component={<AddPost />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/editpost/:postId"
             element={
               <PrivateRoute component={<AddPost />} redirectTo="/login" />
             }

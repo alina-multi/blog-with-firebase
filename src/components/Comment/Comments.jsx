@@ -14,7 +14,6 @@ function Comments({ postId }) {
   const addCommentRef = useRef(null);
 
   useEffect(() => {
-  
     const { hash } = window.location;
 
     if (hash === "#addComment") {
@@ -49,7 +48,10 @@ function Comments({ postId }) {
       )}
 
       <p className="font-semibold text-lg mx-16 leading-4 "> Comments</p>
+      
       <div className="mx-16 space-y-6 border rounded-sm  p-6 border-zinc-800  bg-zinc-800/20">
+   {!currentUser && <div className="py-3 text-center text-sky-500 text-lg border-b border-zinc-800">Sign in to comment </div>}
+
         {comments.length > 0 ? (
           <ul className="space-y-6">
             {comments.map((comment) => (

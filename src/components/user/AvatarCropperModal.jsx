@@ -7,7 +7,7 @@ export default function CropperModal({
   modalOpen,
   setModalOpen,
   setPreview,
-  setPhotoURL
+  setPhotoURL,
 }) {
   const [slideValue, setSlideValue] = useState(10);
   const cancelButtonRef = useRef(null);
@@ -94,7 +94,6 @@ export default function CropperModal({
                         className="transparent accent-sky-500 h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
                         id="zoom"
                       />
-                    
                     </div>
                   </div>
                 </div>

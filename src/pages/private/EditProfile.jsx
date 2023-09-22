@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import Cropper from "../../components/user/AvatarCropper";
-import { updateProfileData, upload } from "../../utils/handleProfile";
+import { updateProfileData, upload } from "../../helpers/handleProfile";
 import { AuthContext } from "../../store/AuthContext";
 import Layout from "../../components/Layout";
 import Input from "../../components/form/Input";

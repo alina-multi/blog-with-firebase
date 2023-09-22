@@ -6,7 +6,6 @@ import { usersRef } from "../firebase";
 import { NavLink } from "react-router-dom";
 import Loading from "../components/atoms/Loading";
 
-
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +27,7 @@ export default function Users() {
   return isLoading ? (
     <Loading />
   ) : (
-       <Layout>
+    <Layout>
       <ul className="divide-y divide-zinc-700">
         {users.map((user) => (
           <li key={user.email}>
@@ -39,7 +38,10 @@ export default function Users() {
               <div className="flex items-center min-w-0 gap-x-4">
                 <img
                   className="h-14 w-14 flex-none rounded-full bg-zinc-800 object-cover"
-                  src={user?.photoURL || "https://media.tenor.com/O7iUTKsWo4gAAAAC/space-cat.gif"}
+                  src={
+                    user?.photoURL ||
+                    "https://media.tenor.com/O7iUTKsWo4gAAAAC/space-cat.gif"
+                  }
                   alt=""
                 />
                 <div className="min-w-0 flex-auto">
@@ -64,9 +66,4 @@ export default function Users() {
       </ul>
     </Layout>
   );
-
-  // return (
-
-
-  // );
 }

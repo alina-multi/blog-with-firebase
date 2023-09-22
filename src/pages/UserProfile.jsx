@@ -8,12 +8,20 @@ import Loading from "../components/atoms/Loading";
 
 export default function UserProfile() {
   const [user, setUser] = useState(null);
-  let { profileId } = useParams();
+
   const [isLoading, setIsLoading] = useState(true);
+  let { profileId } = useParams();
 
   useEffect(() => {
-    fetchUser(profileId).then((user) => setUser(user)).then(()=>setIsLoading(false) );
-  }, [user]);
+ 
+    const fetchData = async () => {
+      const currentUser = await fetchUser(profileId);
+      setUser(currentUser);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [profileId]);
 
   return isLoading ? (
     <Loading />
@@ -35,7 +43,7 @@ export default function UserProfile() {
             <p className="text-2xl font-bold ">{user?.displayName}</p>
             <p className="truncate text-sm text-zinc-400"> {user?.email}</p>
             <p className="truncate text- font-semibold ">
-              {" "}
+           
               Published posts:
               <span className="ml-2"> {user?.posts.length}</span>{" "}
             </p>
@@ -44,9 +52,8 @@ export default function UserProfile() {
 
         <div className="mt-9">
           <h1 className="text-xl font-bold text-center">
-            Posts by{" "}
-            <span className="text-xl font-medium text-sky-600">
-              {" "}
+            Posts by
+            <span className="text-xl font-medium text-sky-600 ml-2">
               {user?.displayName}
             </span>
           </h1>
@@ -54,13 +61,13 @@ export default function UserProfile() {
           {user?.posts.length > 0 ? (
             <ul className="mt-5">
               {user?.posts.map((postId) => (
-                <li key={postId}>
-                  <MyPost postId={postId} />
+                <li  key={postId} >
+                  <MyPost postId={postId}/>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="mt-6 text-center text-xl">
+            <div className="mt-6 text-center text-xl ">
               There are no posts yet{" "}
             </div>
           )}
