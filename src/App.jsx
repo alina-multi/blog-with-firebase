@@ -26,7 +26,7 @@ function App() {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div className="flex gap-6 ">
+    <div className="flex lg:gap-6 ">
       <Toaster />
       <SideNav />
       <HeaderTop />

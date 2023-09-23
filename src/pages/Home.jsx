@@ -28,12 +28,12 @@ export default function Home() {
                   on GitРub.
                 </p>
                 <div className="mt-10 flex items-center gap-x-6">
-                  <a
-                    href="/posts"
+                  <NavLink
+                    to="/posts"
                     className="rounded-sm bg-sky-600 px-3.5 py-2.5 text-sm font-semibold text-zinc-100 shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                   >
                     Go to Posts
-                  </a>
+                  </NavLink>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"

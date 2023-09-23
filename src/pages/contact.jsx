@@ -9,9 +9,9 @@ import TextArea from "../components/form/TextArea";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 
-const SERVICE_ID = "service_hixy8q4";
-const TEMPLATE_ID = "template_g5sk2pw";
-const PUBLIC_KEY = "IbqKMmNAfrG8I0Qa-";
+// const SERVICE_ID = "service_hixy8q4";
+// const TEMPLATE_ID = "template_g5sk2pw";
+// const PUBLIC_KEY = "IbqKMmNAfrG8I0Qa-";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -46,7 +46,7 @@ export default function Contact() {
   const submit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, refForm.current, PUBLIC_KEY).then(
+    emailjs.sendForm(process.env.SERVICE_ID, process.env.TEMPLATE_ID, refForm.current, process.env.PUBLIC_KEY).then(
       (result) => {
         toast.success(`Thanks ${name}! Your message has been sent`, {
           duration: 3000,
@@ -63,8 +63,8 @@ export default function Contact() {
     <Layout>
       <Shadow />
 
-      <div className=" grid grid-cols-1 lg:grid-cols-2  px-9    lg:pt-32 gap-16">
-        <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+      <div className=" grid grid-cols-1 lg:grid-cols-2  px-9    lg:pt-[122px] gap-16">
+        <div className="mx-auto lg:mx-0 lg:max-w-lg">
           <h2 className="text-3xl font-bold tracking-tight text-white pt-6">
             Get in touch
           </h2>
