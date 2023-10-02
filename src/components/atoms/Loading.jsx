@@ -1,15 +1,19 @@
-
+import { Circles } from "react-loader-spinner";
 
 const Loading = () => {
-    return (
+  return (
     <div className="flex justify-center items-center w-3/4 ml-auto h-screen">
-        <div
-        className="inline-block mt-12 w-48 h-48 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-        role="status">
-      </div>
+      <Circles
+        height="140"
+        width="140"
+        color="#0ea5e9"
+        ariaLabel="circles-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+      />
     </div>
- 
-    )
-    };
+  );
+};
 
 export default Loading;

@@ -6,39 +6,7 @@ import {
 import { findError } from "./authErrorCodes";
 import { auth, usersRef } from "../firebase";
 import { setDoc, doc } from "firebase/firestore";
-
-import { getDoc } from "firebase/firestore";
-
-
-export const fetchUser = async (uid) => {
-  const docSnap = await getDoc(doc(usersRef, uid));
-  let user = {};
-
-  if (docSnap.exists()) {
-    user = docSnap.data();
-  } else {
-  
-  }
-
-  return user;
-};
-
-const creatUsersCollection = (user, username) => {
-  const payload = {
-    uid: user.uid,
-    displayName: username,
-    email: user.email,
-    photoURL: user.photoURL,
-    createdAt: user.metadata.creationTime,
-    firstName: "",
-    lastName: "",
-    posts: [],
-  };
-
-  setDoc(doc(usersRef, user.uid), payload);
-
-  return payload;
-};
+import { fetchUser } from "../helpers/fetchUser";
 
 export const login = async (email, password, setError, dispatch) => {
   signInWithEmailAndPassword(auth, email, password)
@@ -79,4 +47,21 @@ export const logout = async (dispatch) => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+const creatUsersCollection = (user, username) => {
+  const payload = {
+    uid: user.uid,
+    displayName: username,
+    email: user.email,
+    photoURL: user.photoURL,
+    createdAt: user.metadata.creationTime,
+    firstName: "",
+    lastName: "",
+    posts: [],
+  };
+
+  setDoc(doc(usersRef, user.uid), payload);
+
+  return payload;
 };
